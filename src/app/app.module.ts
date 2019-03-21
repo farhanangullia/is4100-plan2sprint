@@ -4,15 +4,19 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from "./material.module";
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { AppComponent } from './app.component';
 import { Browser } from 'protractor';
+import { UserStoriesComponent } from './pages/user-stories/user-stories.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    HomeComponent,
+    UserStoriesComponent
   ],
   imports: [
     BrowserModule,
