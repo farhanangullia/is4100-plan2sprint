@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { SidenavComponent } from './shared/sidenav/sidenav.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  {
-    path: "",
-    component: SidenavComponent
-  }
+  {path: "", redirectTo:'home', pathMatch:'full'},
+  {path: 'home', component: HomeComponent}
 ];
 
 @NgModule({
