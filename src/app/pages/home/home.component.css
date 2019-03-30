@@ -1,9 +1,24 @@
 .content-container{
-    width: 50%;
+    max-width: 100%;
     padding: 10px 20px;
-    flex-grow: 1;
 
 }
+
+.content{
+    width: 50%;
+    padding: 10px 20px; 
+    flex-grow: 1
+}
+
+.mat-card:hover {
+    box-shadow: 0 4px 4px rgb(83,83,83);
+    background-color: lightgrey
+}
+
+.mat-drawer-content{
+    background-color: white
+}
+
 .mat-figure {
     justify-content: flex-start !important
 }

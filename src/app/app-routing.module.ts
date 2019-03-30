@@ -6,15 +6,17 @@ import { FullscreenOverlayContainer } from '@angular/cdk/overlay';
 import { UserStoriesComponent } from './pages/user-stories/user-stories.component';
 
 const routes: Routes = [
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: "",
     component: SidenavComponent,
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'userstories', component: UserStoriesComponent }
-
     ]
-  },
+  }
+
 ];
 
 @NgModule({

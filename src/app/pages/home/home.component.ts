@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import * as project1Data from '../../../data/project1_onesprint.json';
 import * as project2Data from '../../../data/project2_onesprint.json';
 import * as project3Data from '../../../data/project3_onesprint.json';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 
 @Component({
@@ -12,24 +13,17 @@ import * as project3Data from '../../../data/project3_onesprint.json';
 export class HomeComponent implements OnInit {
 
   allProjs: Array<any>;
+  projectTitle: string;
+  projectDescrption: string;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.allProjs = new Array();
   }
 
   ngOnInit() {
-    console.log("test");
-    console.log(localStorage);
-    console.log('ab', this.allProjs);
-    // this.jsonFiles.push(JSON.stringify(project1Data),JSON.stringify(project2Data), JSON.stringify(project3Data));
-    // let project1 = new ProjectEntity(project1Data.projectId, project1Data.title, project1Data.description);
-    // let project2 = new ProjectEntity(project2Data.projectId, project2Data.title, project2Data.description);
-    // let project3 = new ProjectEntity(project3Data.projectId,project3Data.title, project3Data.description);
-    // this.projects.push(project1, project2, project3);
-
-    // this.userStories = project1Data.sprints[0].userStories;
-    // console.log(this.userStories);
-    // console.log(this.projects.length)
+    // console.log("test");
+    // console.log(localStorage);
+    // console.log('ab', this.allProjs);
     localStorage.clear()
     localStorage.setItem(project1Data.projectId, JSON.stringify(project1Data));
     localStorage.setItem(project2Data.projectId, JSON.stringify(project2Data));
@@ -46,6 +40,29 @@ export class HomeComponent implements OnInit {
 
   }
 
-
-
+  projectModal(templateRef) {
+    let dialogRef = this.dialog.open(templateRef, {
+      height: '500px',
+      width: '600px',
+      // data: {projectTitle: this.projectTitle, description: this.projectDescrption}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    
+    });
+  }
 }
+
+// @Component({
+//   selector: 'create-project-dialog',
+// })
+// export class CreateProjectDialog {
+//   constructor(
+//     public dialogRef: MatDialogRef<CreateProjectDialog>) { }
+
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+
+  
+
