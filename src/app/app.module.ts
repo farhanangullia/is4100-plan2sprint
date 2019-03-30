@@ -22,6 +22,8 @@ import { CheckboxModule } from 'primeng/primeng';
 import { ToggleButtonModule } from 'primeng/primeng';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { FormsModule } from '@angular/forms';
     CheckboxModule,
     ToggleButtonModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    ButtonModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent]
