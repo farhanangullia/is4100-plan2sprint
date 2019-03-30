@@ -3,13 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FullscreenOverlayContainer } from '@angular/cdk/overlay';
+import { UserStoriesComponent } from './pages/user-stories/user-stories.component';
 
 const routes: Routes = [
   {
-    path: "", 
+    path: "",
     component: SidenavComponent,
     children: [
-      {path: 'home', component: HomeComponent}
+      { path: 'home', component: HomeComponent },
+      { path: 'userstories', component: UserStoriesComponent }
 
     ]
   },
