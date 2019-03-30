@@ -9,11 +9,11 @@
             </button>
         </div>
     </div>
-    <div class="row card-container" *ngFor="let project of projects">
+    <div class="row card-container" *ngFor="let project of allProjs">
         <mat-card>
-            <mat-card-title>{{project.projectTitle}}</mat-card-title>
+            <mat-card-title>{{project.default.title}}</mat-card-title>
             <mat-card-content>
-                <p> {{project.description}}</p>
+                <p> {{project.default.description}}</p>
             </mat-card-content>
         </mat-card>
         <br />
