@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -33,6 +33,24 @@ export class SidenavComponent implements OnInit {
       this.element.style.backgroundColor = "white";
       this.element.style.color = "#3F51B5";
     } 
+  }
+
+  goToPage(component: string){
+    if (this.router.url == component){
+      return;
+    }
+    else{
+      this.router.navigate([component]).then(
+        success => {
+          if (!success) {
+            console.log("success")
+          }
+        }, 
+        error => {
+          console.log(error)
+        }
+      )
+    }
   }
 
 }

@@ -9,6 +9,8 @@ import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { AppComponent } from './app.component';
 import { Browser } from 'protractor';
 import { UserStoriesComponent } from './pages/user-stories/user-stories.component';
+import { TaskTableComponent } from './shared/task-table/task-table.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -16,13 +18,15 @@ import { UserStoriesComponent } from './pages/user-stories/user-stories.componen
     AppComponent,
     SidenavComponent,
     HomeComponent,
-    UserStoriesComponent
+    UserStoriesComponent,
+    TaskTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
