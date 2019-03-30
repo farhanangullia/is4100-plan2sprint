@@ -1,3 +1,9 @@
-<p>
-  user-stories works!
-</p>
+<p-pickList [source]="userStories" [target]="targetUserstories" sourceHeader="Available" targetHeader="Selected"
+  [responsive]="true" filterBy="details" dragdrop="true" sourceFilterPlaceholder="Search by details"
+  targetFilterPlaceholder="Search by details" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+  <ng-template let-userStory pTemplate="item">
+    <div class="ui-helper-clearfix">
+      <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{userStory.details}}</div>
+    </div>
+  </ng-template>
+</p-pickList>

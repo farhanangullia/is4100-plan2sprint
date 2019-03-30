@@ -1,71 +1,54 @@
 {
-"title": "Live StreamEr 2.0",
-"sprints":
-	[
-	{
-	"sprint": {
-		"sprintNum": 1,
-		"userStories": 
-        [
-        	{
-        		"userStory": {
-        		"priority": 1,
-				"details": "I want to login with my account",
-				"tasks": 
-					[
+	"title": "Live StreamEr 2.0",
+	"sprints": [
+		{
+			"sprintNum": 1,
+			"userStories": [
+				{
+					"priority": 1,
+					"details": "I want to login with my account",
+					"tasks": [
 						{
 							"task": {
-							"description": "Do login UI",		
-							"EV": 10,
-							"AC": 10,
-							"PV": 10
+								"description": "Do login UI",
+								"EV": 10,
+								"AC": 10,
+								"PV": 10
 							}
-        		
-        		
 						},
 						{
 							"task": {
-							"description": "Implement backend logic for login",
-							"EV": 12,
-							"AC": 12,
-							"PV": 12
+								"description": "Implement backend logic for login",
+								"EV": 12,
+								"AC": 12,
+								"PV": 12
 							}
-        		
-        		
 						}
-					] 
-        		}
-        		
-			},
-			{
-        		"userStory": {
-        		"priority": 2,
-				"details": "I want to browse channels",
-				"tasks": 
-					[
+					]
+				},
+				{
+					"priority": 2,
+					"details": "I want to browse channels",
+					"tasks": [
 						{
 							"task": {
-							"description": "Do UI for list of channels",
-							"EV": 15,
-							"AC": 17,
-							"PV": 15						
+								"description": "Do UI for list of channels",
+								"EV": 15,
+								"AC": 17,
+								"PV": 15
 							}
-        		
-        		
 						},
 						{
 							"task": {
-							"description": "Implement backend logic for channel routing",
-							"EV": 24,
-							"AC": 32,
-							"PV": 24	
+								"description": "Implement backend logic for channel routing",
+								"EV": 24,
+								"AC": 32,
+								"PV": 24
 							}
 						}
-					] 
-        		}		
-			}
-		] 
-	  }
-	}
+					]
+				}
+			]
+		}
 	]
 }
