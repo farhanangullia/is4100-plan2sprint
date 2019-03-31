@@ -1,14 +1,27 @@
-<p-pickList [source]="userStories" [target]="targetUserstories" sourceHeader="Available User Stories" targetHeader="In Current Sprint"
-  [responsive]="true" filterBy="details" dragdrop="true" sourceFilterPlaceholder="Search by details"
-  targetFilterPlaceholder="Search by details" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
-  <ng-template let-userStory pTemplate="item">
-    <div class="ui-helper-clearfix">
-      <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{userStory.details}}</div>
-    </div>
-  </ng-template>
+<p-toast position="bottom-center"></p-toast>
+<div style="padding-top: 10px;">
+  <p-pickList [source]="userStories" [target]="targetUserstories" sourceHeader="Available User Stories" targetHeader="In Current Sprint"
+    [responsive]="true" filterBy="details" dragdrop="true" sourceFilterPlaceholder="Search by details"
+    targetFilterPlaceholder="Search by details" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+    <ng-template let-userStory pTemplate="item">
+      <div class="ui-helper-clearfix">
+        <div style="display:inline-block;margin:2px 0 2px 2px" width="48">Priority: {{userStory.priority}}
+        </div>
+        <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{userStory.details}}</div>
+      </div>
+    </ng-template>
+  </p-pickList>
+</div>
 
-</p-pickList>
-<p-button label="New User Story" (onClick)="newStoryClick($event)"></p-button>
+<div style="margin:0 auto;max-width: 700px;height:100px;">
+  <div style="text-align: center;padding-top: 10px;">
+    <p-button label="New User Story" (onClick)="newStoryClick($event)"></p-button>
+  </div>
+  <div style="text-align: center;padding-top: 10px;">
+    <p-button label="Save Sprint" icon="pi pi-save" iconPos="left" (onClick)="saveSprint($event)"></p-button>
+  </div>
+</div>
+
 
 <p-dialog header="New User Story" [(visible)]="displayDialog" [responsive]="true" dismissableMask=true width="700"
   (onAfterHide)="onDialogHide()" [modal]="true" appendTo="body" [focusOnShow]="false">
