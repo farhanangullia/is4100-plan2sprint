@@ -1,4 +1,3 @@
-
 <div class="example-container">
   <mat-toolbar color="primary" class="example-toolbar">
     <div class="header-button align-icon" (click)="isExpanded = !isExpanded">
@@ -12,7 +11,7 @@
     <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
       <mat-nav-list class="dashboard">
 
-        <a mat-list-item (click)="toggleActive($event)">
+        <a mat-list-item (click)="goToPage('/home')">
           <mat-icon matTooltip="Projects" matTooltipPosition="after" mat-list-icon>assignment</mat-icon>
           <p matLine *ngIf="isExpanded">Projects</p>
         </a>
@@ -26,7 +25,7 @@
           <mat-icon matTooltip="Past Sprints" matTooltipPosition="after" mat-list-icon>note_add</mat-icon>
           <p matLine *ngIf="isExpanded">Past Sprints</p>
         </a>
-        
+
         <a mat-list-item (click)="toggleActive($event)">
           <mat-icon matTooltip="Project User Stories" matTooltipPosition="after" mat-list-icon>assignment_late</mat-icon>
           <p matLine *ngIf="isExpanded">Project User Stories</p>
@@ -35,8 +34,11 @@
       </mat-nav-list>
     </mat-sidenav>
 
-    <div class="example-sidenav-content">
-      <router-outlet></router-outlet>
-    </div>
+    <mat-sidenav-content>
+      <div class="example-sidenav-content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+
   </mat-sidenav-container>
 </div>

@@ -1,3 +1,35 @@
-<p>
-  user-stories works!
-</p>
+<p-pickList [source]="userStories" [target]="targetUserstories" sourceHeader="Available User Stories" targetHeader="In Current Sprint"
+  [responsive]="true" filterBy="details" dragdrop="true" sourceFilterPlaceholder="Search by details"
+  targetFilterPlaceholder="Search by details" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+  <ng-template let-userStory pTemplate="item">
+    <div class="ui-helper-clearfix">
+      <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{userStory.details}}</div>
+    </div>
+  </ng-template>
+
+</p-pickList>
+<p-button label="New User Story" (onClick)="newStoryClick($event)"></p-button>
+
+<p-dialog header="New User Story" [(visible)]="displayDialog" [responsive]="true" dismissableMask=true width="700"
+  (onAfterHide)="onDialogHide()" [modal]="true" appendTo="body" [focusOnShow]="false">
+  <!-- <p-toast key="supportDetails"></p-toast> -->
+  <div class="ui-g">
+    <div class="ui-g-4">Details: </div>
+    <div class="ui-g-8"><span class="ui-float-label">
+        <input id="float-input" type="text" size="30" pInputText [(ngModel)]="newStoryDetails">
+        <label for="float-input">I want to...</label>
+      </span></div>
+
+    <div class="ui-g-4">Priority: </div>
+    <div class="ui-g-8">
+      <p-dropdown [options]="priorityLevels" [(ngModel)]="newStoryPriorityLevel" placeholder="Select level of priority"
+        [showClear]="true"></p-dropdown>
+    </div>
+
+
+    <div class="
+          ui-g-12" style="text-align: center;">
+      <p-button label="Create" (click)="createUserStory($event)"></p-button>
+    </div>
+  </div>
+</p-dialog>

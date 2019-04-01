@@ -1,0 +1,13 @@
+.content-container{
+    width: 50%;
+    padding: 10px 20px;
+    flex-grow: 1;
+
+}
+.mat-figure {
+    justify-content: flex-start !important
+}
+
+.icon .mat-figure{
+    justify-content: flex-end !important
+}
