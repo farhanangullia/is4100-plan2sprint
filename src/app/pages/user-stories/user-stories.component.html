@@ -1,6 +1,6 @@
 <p-toast position="bottom-center"></p-toast>
 <div style="padding-top: 10px;">
-  <p-pickList [source]="userStories" [target]="targetUserstories" sourceHeader="Available User Stories" targetHeader="In Current Sprint"
+  <p-pickList [source]="userStories" [target]="targetUserstories" sourceHeader="Available User Stories" targetHeader="Current Sprint Number: {{currentSprintNum}}"
     [responsive]="true" filterBy="details" dragdrop="true" sourceFilterPlaceholder="Search by details"
     targetFilterPlaceholder="Search by details" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
     <ng-template let-userStory pTemplate="item">
@@ -15,10 +15,10 @@
 
 <div style="margin:0 auto;max-width: 700px;height:100px;">
   <div style="text-align: center;padding-top: 10px;">
-    <p-button label="New User Story" (onClick)="newStoryClick($event)"></p-button>
+    <p-button label="New User Story" icon="pi pi-plus" iconPos="left" styleClass="ui-button-success" (onClick)="newStoryClick($event)"></p-button>
   </div>
   <div style="text-align: center;padding-top: 10px;">
-    <p-button label="Save Sprint" icon="pi pi-save" iconPos="left" (onClick)="saveSprint($event)"></p-button>
+    <p-button label="Save Sprint" icon="pi pi-save" iconPos="left" styleClass="ui-button-warning" (onClick)="saveSprint($event)"></p-button>
   </div>
 </div>
 

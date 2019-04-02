@@ -58,11 +58,12 @@ export class UserStoriesComponent implements OnInit {
       params => {
         this.projectId = params.projectId;
         this.currentProject = JSON.parse(localStorage.getItem(params.projectId));
-        console.log(this.currentProject.default.sprints[0].userStories);
         this.currentSprintNum = this.currentProject.default.sprints.length;
+        console.log(this.currentProject.default.sprints[this.currentSprintNum - 1].userStories);
+
         this.userStories = this.currentProject.default.availableUserStories;
         console.log(this.userStories);
-        this.targetUserstories = this.currentProject.default.sprints[0].userStories;
+        this.targetUserstories = this.currentProject.default.sprints[this.currentSprintNum - 1].userStories;
         this.priorityLevels = [
           { label: '1', value: 1 },
           { label: '2', value: 2 },
