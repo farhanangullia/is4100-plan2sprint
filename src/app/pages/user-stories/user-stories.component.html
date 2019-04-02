@@ -1,5 +1,11 @@
 <p-toast position="bottom-center"></p-toast>
-<div style="padding-top: 10px;">
+<div style="margin:0 auto;max-width: 700px;height:100px;">
+  <div style="text-align: center;padding-top: 5px;">
+    <h2>User Stories Planner</h2>
+    <h4>Project: {{currentProject.default.title}}</h4>
+  </div>
+</div>
+<div style="padding-top: 20px;">
   <p-pickList [source]="userStories" [target]="targetUserstories" sourceHeader="Available User Stories" targetHeader="Current Sprint Number: {{currentSprintNum}}"
     [responsive]="true" filterBy="details" dragdrop="true" sourceFilterPlaceholder="Search by details"
     targetFilterPlaceholder="Search by details" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
