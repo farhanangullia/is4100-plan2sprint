@@ -25,13 +25,21 @@ export class HomeComponent implements OnInit {
     console.log(localStorage);
     console.log('ab', this.allProjs);
 
-    localStorage.clear()
+    // localStorage.clear()
 
     // this.allProjs.push(project1Data, project2Data, project3Data);
 
-    localStorage.setItem(project1Data.projectId, JSON.stringify(project1Data));
-    localStorage.setItem(project2Data.projectId, JSON.stringify(project2Data));
-    localStorage.setItem(project3Data.projectId, JSON.stringify(project3Data));
+    if (localStorage.getItem(project1Data.projectId) === null) {
+      localStorage.setItem(project1Data.projectId, JSON.stringify(project1Data));
+    }
+    if (localStorage.getItem(project2Data.projectId) === null) {
+      localStorage.setItem(project2Data.projectId, JSON.stringify(project2Data));
+    }
+    if (localStorage.getItem(project3Data.projectId) === null) {
+      localStorage.setItem(project3Data.projectId, JSON.stringify(project3Data));
+    }
+
+
 
     for (let i = 1; i <= localStorage.length; i++) {
       console.log(localStorage.key(i))

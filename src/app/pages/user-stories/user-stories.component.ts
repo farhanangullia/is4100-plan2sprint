@@ -4,6 +4,7 @@ import * as project1Data from '../../../data/project1_onesprint.json';
 import * as project2Data from '../../../data/project2_onesprint.json';
 import * as project3Data from '../../../data/project3_onesprint.json';
 import { TouchSequence } from 'selenium-webdriver';
+import { MessageService } from 'primeng/api';
 
 class UserStory {
   priority: string;
@@ -38,9 +39,12 @@ export class UserStoriesComponent implements OnInit {
 
   currentProject: any;
 
+  currentSprintNum: number;
+
+  projectId: any;
 
   constructor(
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, private messageService: MessageService
   ) {
     this.userStories2 = [];
   }
@@ -52,11 +56,14 @@ export class UserStoriesComponent implements OnInit {
 
     this.route.params.subscribe(
       params => {
+        this.projectId = params.projectId;
         this.currentProject = JSON.parse(localStorage.getItem(params.projectId));
-        console.log(this.currentProject.default.sprints[0].userStories);
+        this.currentSprintNum = this.currentProject.default.sprints.length;
+        console.log(this.currentProject.default.sprints[this.currentSprintNum - 1].userStories);
+
         this.userStories = this.currentProject.default.availableUserStories;
         console.log(this.userStories);
-        this.targetUserstories = this.currentProject.default.sprints[0].userStories;
+        this.targetUserstories = this.currentProject.default.sprints[this.currentSprintNum - 1].userStories;
         this.priorityLevels = [
           { label: '1', value: 1 },
           { label: '2', value: 2 },
@@ -80,6 +87,18 @@ export class UserStoriesComponent implements OnInit {
     event.preventDefault();
   }
 
+  saveSprint(event: Event) {
+    console.log(this.targetUserstories);
+    console.log(this.currentProject.default.sprints[0]);
+    console.log(this.currentProject);
+    this.currentProject.default.sprints.pop();
+    this.currentProject.default.sprints.push({ 'sprintNum': this.currentSprintNum, 'userStories': this.targetUserstories });
+    localStorage.removeItem(this.projectId);
+    localStorage.setItem(this.projectId, JSON.stringify(this.currentProject));
+    console.log(this.currentProject);
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Current Sprint Saved' });
+  }
+
   onDialogHide() {
     this.newStoryPriorityLevel = null;
     this.newStoryDetails = null;
@@ -91,8 +110,10 @@ export class UserStoriesComponent implements OnInit {
     this.displayDialog = false;
     this.currentProject.default.availableUserStories.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails, 'tasks': [] });
     console.log('New: ', this.currentProject);
-    localStorage.setItem('project1', JSON.stringify(this.currentProject));
+    localStorage.removeItem(this.projectId);
+    localStorage.setItem(this.projectId, JSON.stringify(this.currentProject));
     // var retrievedObj = localStorage.getItem('userStories');
     // console.log('retrieved obj ', JSON.parse(retrievedObj));
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New User Story Created' });
   }
 }
