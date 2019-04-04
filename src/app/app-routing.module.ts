@@ -13,7 +13,7 @@ const routes: Routes = [
     component: SidenavComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'userstories', component: UserStoriesComponent }
+      { path: ':projectId/userstories', component: UserStoriesComponent },
     ]
   }
 

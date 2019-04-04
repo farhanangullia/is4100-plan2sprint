@@ -1,0 +1,12 @@
+{
+    "projectId": "4",
+    "title": "Expenses Manager",
+    "description": "Mobile application for managing your daily expenses.",
+    "availableUserStories": [],
+    "sprints": [
+        {
+            "sprintNum": 1,
+            "userStories": []
+        }
+    ]
+}

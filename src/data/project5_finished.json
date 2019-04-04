@@ -1,0 +1,173 @@
+{
+    "projectId": "5",
+    "title": "Mini ERP System",
+    "description": "In-House ERP System to manage the needs of a typical restaurant.",
+    "availableUserStories": [],
+    "sprints": [
+        {
+            "sprintNum": 1,
+            "userStories": [
+                {
+                    "priority": 1,
+                    "details": "I want to login with my account",
+                    "tasks": [
+                        {
+                            "description": "Do login UI",
+                            "EV": 10,
+                            "AC": 10,
+                            "PV": 10
+                        },
+                        {
+                            "description": "Implement backend logic for login",
+                            "EV": 12,
+                            "AC": 12,
+                            "PV": 12
+                        },
+                        {
+                            "description": "Test login function",
+                            "EV": 2,
+                            "AC": 2,
+                            "PV": 2
+                        }
+                    ]
+                },
+                {
+                    "priority": 2,
+                    "details": "I want to generate invoices",
+                    "tasks": [
+                        {
+                            "description": "Do UI for invoice generation",
+                            "EV": 15,
+                            "AC": 17,
+                            "PV": 15
+                        },
+                        {
+                            "description": "Implement backend logic for invoice generation",
+                            "EV": 24,
+                            "AC": 32,
+                            "PV": 24
+                        },
+                        {
+                            "description": "Implement accounting module",
+                            "EV": 5,
+                            "AC": 7,
+                            "PV": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "sprintNum": 2,
+            "userStories": [
+                {
+                    "priority": 1,
+                    "details": "I want to update my inventory levels",
+                    "tasks": [
+                        {
+                            "description": "Do UI for inventory management",
+                            "EV": 10,
+                            "AC": 9,
+                            "PV": 10
+                        },
+                        {
+                            "description": "Implement backend logic for inventory management",
+                            "EV": 17,
+                            "AC": 15,
+                            "PV": 17
+                        },
+                        {
+                            "description": "Test inventory management",
+                            "EV": 3,
+                            "AC": 1,
+                            "PV": 3
+                        }
+                    ]
+                },
+                {
+                    "priority": 2,
+                    "details": "I want to view my monthly revenue report",
+                    "tasks": [
+                        {
+                            "description": "Do UI for accounting management",
+                            "EV": 20,
+                            "AC": 15,
+                            "PV": 15
+                        },
+                        {
+                            "description": "Implement calculation functions",
+                            "EV": 24,
+                            "AC": 18,
+                            "PV": 18
+                        },
+                        {
+                            "description": "Tabulate data from calculations and generate report",
+                            "EV": 5,
+                            "AC": 2,
+                            "PV": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "sprintNum": 3,
+            "userStories": [
+                {
+                    "priority": 1,
+                    "details": "I want to manage my vendors",
+                    "tasks": [
+                        {
+                            "description": "Do UI for vendor management",
+                            "EV": 10,
+                            "AC": 13,
+                            "PV": 13
+                        },
+                        {
+                            "description": "Implement CRUD for vendor management",
+                            "EV": 25,
+                            "AC": 21,
+                            "PV": 21
+                        },
+                        {
+                            "description": "List details of all vendors",
+                            "EV": 6,
+                            "AC": 8,
+                            "PV": 8
+                        }
+                    ]
+                },
+                {
+                    "priority": 2,
+                    "details": "I want to manage my staff",
+                    "tasks": [
+                        {
+                            "description": "Do UI for HR management",
+                            "EV": 15,
+                            "AC": 15,
+                            "PV": 15
+                        },
+                        {
+                            "description": "Implement backend logic for HRM",
+                            "EV": 32,
+                            "AC": 32,
+                            "PV": 32
+                        },
+                        {
+                            "description": "Do CRUD for HRM",
+                            "EV": 3,
+                            "AC": 3,
+                            "PV": 3
+                        },
+                        {
+                            "description": "Implement payroll feature for HRM",
+                            "EV": 14,
+                            "AC": 14,
+                            "PV": 14
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
