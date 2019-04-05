@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as project1Data from '../../../data/project1_onesprint.json';
-import * as project2Data from '../../../data/project2_onesprint.json';
-import * as project3Data from '../../../data/project3_onesprint.json';
+import * as project1Data from '../../../data/project1_3sprint.json';
+import * as project2Data from '../../../data/project2_2sprint.json';
+import * as project3Data from '../../../data/project3_3sprint.json';
 
 
 @Component({

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FlatTreeControl } from '@angular/cdk/tree';
-import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 
 @Component({
   selector: 'app-current-sprint',
@@ -10,7 +8,7 @@ import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 })
 
 export class CurrentSprintComponent implements OnInit {
-  displayedColumns: string[] = ['tasks'];
+  displayedColumns: string[] = ['userstories', 'tasks'];
   project : any;
   currentSprint : any;
   currentUserStories: any;
