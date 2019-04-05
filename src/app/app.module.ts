@@ -28,6 +28,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { PastSprintsComponent } from './pages/past-sprints/past-sprints.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { MessageService } from 'primeng/api';
     SidenavComponent,
     HomeComponent,
     UserStoriesComponent,
-    TaskTableComponent
+    TaskTableComponent,
+    PastSprintsComponent
   ],
   imports: [
     BrowserModule,

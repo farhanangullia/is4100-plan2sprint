@@ -59,6 +59,7 @@ export class UserStoriesComponent implements OnInit {
         this.projectId = params.projectId;
         this.currentProject = JSON.parse(localStorage.getItem(params.projectId));
         this.currentSprintNum = this.currentProject.default.sprints.length;
+        console.log('proj', this.currentProject);
         console.log(this.currentProject.default.sprints[this.currentSprintNum - 1].userStories);
 
         this.userStories = this.currentProject.default.availableUserStories;
