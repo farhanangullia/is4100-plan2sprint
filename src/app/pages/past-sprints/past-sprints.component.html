@@ -5,8 +5,8 @@
   </div>
 </div>
 
-<p-dataView #dv [value]="userStories" [paginator]="true" [rows]="10" emptyMessage="No user stories found" layout="list"
-  paginatorPosition="both" filterBy="details" [sortField]="sortField" [sortOrder]="sortOrder">
+<p-dataView #dv [value]="userStories" [paginator]="true" [rows]="10" emptyMessage="Please select a past sprint from the drop down list on the top right"
+  layout="list" paginatorPosition="both" filterBy="details" [sortField]="sortField" [sortOrder]="sortOrder">
   <p-header>
     <div class="ui-helper-clearfix">
       <div class="ui-g">
