@@ -29,6 +29,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { PastSprintsComponent } from './pages/past-sprints/past-sprints.component';
+import { CurrentSprintComponent } from './pages/current-sprint/current-sprint.component';
+import { TreeModule } from 'primeng/tree';
+import { TreeDragDropService } from 'primeng/components/common/api';
+import { TableModule } from 'primeng/table';
+import { DataTableModule } from 'primeng/datatable';
+import { PaginatorModule } from 'primeng/paginator';
+
+
 
 
 @NgModule({
@@ -38,7 +46,8 @@ import { PastSprintsComponent } from './pages/past-sprints/past-sprints.componen
     HomeComponent,
     UserStoriesComponent,
     TaskTableComponent,
-    PastSprintsComponent
+    PastSprintsComponent,
+    CurrentSprintComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +70,12 @@ import { PastSprintsComponent } from './pages/past-sprints/past-sprints.componen
     ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
-    ToastModule
+    ToastModule,
+    TreeModule,
+    TableModule,
+    DataTableModule,
+    PaginatorModule,
+    DataViewModule
   ],
   providers: [
     MessageService

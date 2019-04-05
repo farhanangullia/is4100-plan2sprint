@@ -1,6 +1,95 @@
 <div style="margin:0 auto;max-width: 700px;height:100px;">
   <div style="text-align: center;padding-top: 5px;">
     <h2>Past Sprints</h2>
-    <h4>Project: sda</h4>
+    <h4>Project: {{currentProject.default.title}}</h4>
   </div>
 </div>
+
+<p-dataView #dv [value]="userStories" [paginator]="true" [rows]="10" emptyMessage="No user stories found" layout="list"
+  paginatorPosition="both" filterBy="details" [sortField]="sortField" [sortOrder]="sortOrder">
+  <p-header>
+    <div class="ui-helper-clearfix">
+      <div class="ui-g">
+        <div class="ui-g-12 ui-md-4">
+          <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)"
+            [style]="{'min-width':'15em'}"></p-dropdown>
+        </div>
+        <div class="ui-g-6 ui-md-4 filter-container">
+          <div style="position:relative">
+            <input type="search" pInputText placeholder="Search by details" (keyup)="dv.filter($event.target.value)">
+          </div>
+        </div>
+        <div class="ui-g-6 ui-md-4" style="text-align:right">
+          <!-- <p-toggleButton [(ngModel)]="unresolvedTickets" (onChange)="handleChange($event)" onLabel="Unresolved Tickets"
+            offLabel="Resolved Tickets" [style]="{'width':'150px'}"></p-toggleButton> -->
+          <select id="sprintNum" #Id="ngModel" [(ngModel)]="sprintNum" name="sprintNum" (change)="onSprintChange($event);">
+
+            <option [ngValue]="k.sprintNum" *ngFor="let k of sprints">
+              {{k.sprintNum}}
+            </option>
+          </select>
+          <!-- <p-dropdown [options]="sprintOptions" [(ngModel)]="userStoriesInSprint" placeholder="Which Sprint?"
+            (onChange)="onSprintChange($event)" [style]="{'min-width':'5em'}"></p-dropdown> -->
+        </div>
+      </div>
+    </div>
+  </p-header>
+  <ng-template let-userStory pTemplate="listItem">
+    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+
+      <div class="ui-g-12 ui-md-8 userstory-details">
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-6">Details: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{userStory.details}}</b></div>
+          <div class="ui-g-2 ui-sm-6">Priority Level: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{userStory.priority}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">Number of Tasks: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{userStory.tasks.length}}</b></div>
+
+
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-1 view-icon">
+        <button pButton type="button" icon="pi pi-external-link" (click)="selectUserStory($event, userStory)"></button>
+      </div>
+    </div>
+  </ng-template>
+</p-dataView>
+
+<p-dialog header="View Tasks" [(visible)]="displayDialog" [responsive]="true" dismissableMask=true width="700"
+  (onAfterHide)="onDialogHide()" [modal]="true" appendTo="body" [focusOnShow]="false">
+  <p-toast key="taskDetails"></p-toast>
+  <div class="ui-g" *ngIf="selectedUserStory">
+    <!-- <div class="ui-g-12" style="text-align:center">
+      <img src="../assets/logo/ticket.png">
+    </div> -->
+    <div class="ui-g-4">Ticket Code: </div>
+    <div class="ui-g-8">{{selectedUserStory.details}}</div>
+
+    <div class="ui-g-4">Date Issued: </div>
+    <div class="ui-g-8">das </div>
+
+    <div class="ui-g-4">Time Issued: </div>
+    <div class="ui-g-8">aa</div>
+
+    <div class="ui-g-4">Issue Type: </div>
+    <div class="ui-g-8">as</div>
+
+
+    <!-- 
+    <div class="ui-g-4">Resolution: </div>
+    <div class="ui-g-8">
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon">
+          <p-checkbox [(ngModel)]="selectedSupportTicket.isResolved" binary="true"></p-checkbox>
+        </span>
+        <input type="text" pInputText placeholder={{selectedSupportTicket.resolutionRemarks}} [(ngModel)]="selectedSupportTicket.resolutionRemarks">
+      </div>
+    </div>
+    <div class="
+          ui-g-12" style="text-align: center;">
+      <p-button label="Update Resolution" (click)="updateSupportTicket($event, selectedSupportTicket)"></p-button>
+    </div> -->
+  </div>
+</p-dialog>
