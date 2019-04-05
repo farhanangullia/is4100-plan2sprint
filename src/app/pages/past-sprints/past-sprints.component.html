@@ -64,17 +64,23 @@
     <!-- <div class="ui-g-12" style="text-align:center">
       <img src="../assets/logo/ticket.png">
     </div> -->
-    <div class="ui-g-4">Ticket Code: </div>
-    <div class="ui-g-8">{{selectedUserStory.details}}</div>
 
-    <div class="ui-g-4">Date Issued: </div>
-    <div class="ui-g-8">das </div>
+    <ng-container *ngFor="let task of selectedUserStory.tasks">
+      <div class="ui-g-4">Task: </div>
+      <div class="ui-g-8">{{task.description}}</div>
 
-    <div class="ui-g-4">Time Issued: </div>
-    <div class="ui-g-8">aa</div>
+      <div class="ui-g-4">Planned Value: </div>
+      <div class="ui-g-8">{{task.PV}} </div>
 
-    <div class="ui-g-4">Issue Type: </div>
-    <div class="ui-g-8">as</div>
+      <div class="ui-g-4">Earned Value: </div>
+      <div class="ui-g-8">{{task.EV}}</div>
+
+      <div class="ui-g-4">Actual Cost: </div>
+      <div class="ui-g-8">{{task.AC}}</div>
+
+    </ng-container>
+
+
 
 
     <!-- 

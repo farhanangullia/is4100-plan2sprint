@@ -16,7 +16,7 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: ':projectId/userstories', component: UserStoriesComponent },
-      { path: 'pastsprints', component: PastSprintsComponent },
+      { path: ':projectId/pastsprints', component: PastSprintsComponent },
       { path: ':projectId/currentsprint', component: CurrentSprintComponent }
     ]
   }

@@ -38,57 +38,67 @@ export class PastSprintsComponent implements OnInit {
 
   sprintNum: any;
 
+  projectId: any;
+
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.currentProject = JSON.parse(localStorage.getItem('1'));
-    this.userStories = this.currentProject.default.sprints[0].userStories;
-    console.log(this.userStories);
-    this.sprints = this.currentProject.default.sprints;
 
-    console.log('sprints', this.sprints);
+    this.route.params.subscribe(
+      params => {
+        this.projectId = params.projectId;
+        this.currentProject = JSON.parse(localStorage.getItem(this.projectId));
+        //this.userStories = this.currentProject.default.sprints[0].userStories;
+        console.log(this.userStories);
+        this.sprints = this.currentProject.default.sprints;
 
-    this.sortOptions = [
-      // { label: 'Newest First', value: '!supportTicketId' },
-      // { label: 'Oldest First', value: 'supportTicketId' },
-      { label: 'Priority Level', value: 'userStory.priority' }
-    ];
+        console.log('sprints', this.sprints);
 
-
-
-
-    this.cols = [
-      { field: 'details', header: 'User Story' },
-      { field: 'priority', header: 'Priority' },
-      { field: 'numTasks', header: 'No. of Tasks' }
-    ];
+        this.sortOptions = [
+          // { label: 'Newest First', value: '!supportTicketId' },
+          // { label: 'Oldest First', value: 'supportTicketId' },
+          { label: 'Priority Level', value: 'userStory.priority' }
+        ];
 
 
-    // this.filesTree11.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails });
-
-    // var newProject = {
-    //   default: {
-    //     "projectId": (localStorage.length + 1).toString(),
-    //     "title": title,
-    //     "description": description,
-    //     "availableUserStories": [],
-    //     "sprints": [
-    //       {
-    //         "sprintNum": 1,
-    //         "userStories": []
-    //       }
-    //     ]
-    //   }
-
-    // }
-    // this.userStories.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails });
-
-    // this.currentProject.default.availableUserStories.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails, 'tasks': [] });
 
 
-    // this.filesTree11 = <TreeNode[]>JSON.parse(localStorage.getItem('1'));
-    console.log('tree', JSON.parse(localStorage.getItem('1')));
+        this.cols = [
+          { field: 'details', header: 'User Story' },
+          { field: 'priority', header: 'Priority' },
+          { field: 'numTasks', header: 'No. of Tasks' }
+        ];
+
+
+        // this.filesTree11.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails });
+
+        // var newProject = {
+        //   default: {
+        //     "projectId": (localStorage.length + 1).toString(),
+        //     "title": title,
+        //     "description": description,
+        //     "availableUserStories": [],
+        //     "sprints": [
+        //       {
+        //         "sprintNum": 1,
+        //         "userStories": []
+        //       }
+        //     ]
+        //   }
+
+        // }
+        // this.userStories.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails });
+
+        // this.currentProject.default.availableUserStories.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails, 'tasks': [] });
+
+
+        // this.filesTree11 = <TreeNode[]>JSON.parse(localStorage.getItem('1'));
+        console.log('tree', JSON.parse(localStorage.getItem('1')));
+      }
+    )
+
+
   }
 
   showUserStory(userStory: any) {
