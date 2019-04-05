@@ -1,0 +1,125 @@
+{
+    "projectId": "2",
+    "title": "Mobile Photo Editor 3.0",
+    "description": "Mobile application that provides advanced tools for photo editing.",
+    "availableUserStories": [
+        {
+            "priority": 1,
+            "details": "I want to upload photos",
+            "tasks": []
+        },
+        {
+            "priority": 2,
+            "details": "I want to delete photos",
+            "tasks": []
+        }
+    ],
+    "sprints": [
+        {
+            "sprintNum": 1,
+            "userStories": [
+                {
+                    "priority": 1,
+                    "details": "I want to login with my account",
+                    "tasks": [
+                        {
+                            "description": "Do login UI",
+                            "EV": 10,
+                            "AC": 10,
+                            "PV": 10
+                        },
+                        {
+                            "description": "Implement backend logic for login",
+                            "EV": 12,
+                            "AC": 12,
+                            "PV": 12
+                        },
+                        {
+                            "description": "Test login function",
+                            "EV": 2,
+                            "AC": 2,
+                            "PV": 2
+                        }
+                    ]
+                },
+                {
+                    "priority": 2,
+                    "details": "I want to learn how to use the app",
+                    "tasks": [
+                        {
+                            "description": "Do UI for tutorial",
+                            "EV": 15,
+                            "AC": 17,
+                            "PV": 15
+                        },
+                        {
+                            "description": "Upload tutorial content and guide",
+                            "EV": 24,
+                            "AC": 32,
+                            "PV": 24
+                        },
+                        {
+                            "description": "Implement tutorial browser logic",
+                            "EV": 5,
+                            "AC": 7,
+                            "PV": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "sprintNum": 2,
+            "userStories": [
+                {
+                    "priority": 1,
+                    "details": "I want to register as a member",
+                    "tasks": [
+                        {
+                            "description": "Do UI for registering",
+                            "EV": 10,
+                            "AC": 9,
+                            "PV": 10
+                        },
+                        {
+                            "description": "Implement backend logic for registering",
+                            "EV": 17,
+                            "AC": 15,
+                            "PV": 17
+                        },
+                        {
+                            "description": "Test register function",
+                            "EV": 3,
+                            "AC": 1,
+                            "PV": 3
+                        }
+                    ]
+                },
+                {
+                    "priority": 2,
+                    "details": "I want to edit photos",
+                    "tasks": [
+                        {
+                            "description": "Do UI for photo editor",
+                            "EV": 20,
+                            "AC": 15,
+                            "PV": 15
+                        },
+                        {
+                            "description": "Implement backend logic for photo editing",
+                            "EV": 24,
+                            "AC": 18,
+                            "PV": 18
+                        },
+                        {
+                            "description": "Test photo editing feature",
+                            "EV": 5,
+                            "AC": 2,
+                            "PV": 2
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

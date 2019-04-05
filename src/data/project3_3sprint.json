@@ -1,0 +1,129 @@
+{
+    "projectId": "3",
+    "title": "Tinda",
+    "description": "Mobile application for single people to meet their soul mates.",
+    "availableUserStories": [
+        {
+            "priority": 1,
+            "details": "I want to match with a user",
+            "tasks": []
+        },
+        {
+            "priority": 2,
+            "details": "I want to upload photos",
+            "tasks": []
+        }
+    ],
+    "sprints": [
+        {
+            "sprintNum": 1,
+            "userStories": [
+                {
+                    "priority": 1,
+                    "details": "I want to login with my account",
+                    "tasks": [
+                        {
+                            "description": "Do login UI",
+                            "EV": 10,
+                            "AC": 10,
+                            "PV": 10
+                        },
+                        {
+                            "description": "Implement backend logic for login",
+                            "EV": 12,
+                            "AC": 12,
+                            "PV": 12
+                        },
+                        {
+                            "description": "Test login function",
+                            "EV": 2,
+                            "AC": 2,
+                            "PV": 2
+                        }
+                    ]
+                },
+                {
+                    "priority": 2,
+                    "details": "I want to browse for soul mates",
+                    "tasks": [
+                        {
+                            "description": "Do UI for list of available people within the area",
+                            "EV": 15,
+                            "AC": 17,
+                            "PV": 15
+                        },
+                        {
+                            "description": "Implement backend logic for retrieval of users",
+                            "EV": 24,
+                            "AC": 32,
+                            "PV": 24
+                        },
+                        {
+                            "description": "Implement geolocation services",
+                            "EV": 5,
+                            "AC": 7,
+                            "PV": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "sprintNum": 2,
+            "userStories": [
+                {
+                    "priority": 1,
+                    "details": "I want to register as a member",
+                    "tasks": [
+                        {
+                            "description": "Do UI for registering",
+                            "EV": 10,
+                            "AC": 9,
+                            "PV": 10
+                        },
+                        {
+                            "description": "Implement backend logic for registering",
+                            "EV": 17,
+                            "AC": 15,
+                            "PV": 17
+                        },
+                        {
+                            "description": "Test register function",
+                            "EV": 3,
+                            "AC": 1,
+                            "PV": 3
+                        }
+                    ]
+                },
+                {
+                    "priority": 2,
+                    "details": "I want to chat with a user",
+                    "tasks": [
+                        {
+                            "description": "Do UI for chat system",
+                            "EV": 20,
+                            "AC": 15,
+                            "PV": 15
+                        },
+                        {
+                            "description": "Implement backend logic for messaging service",
+                            "EV": 24,
+                            "AC": 18,
+                            "PV": 18
+                        },
+                        {
+                            "description": "Test chat system",
+                            "EV": 5,
+                            "AC": 2,
+                            "PV": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "sprintNum": 3,
+            "userStories": []
+        }
+    ]
+}
