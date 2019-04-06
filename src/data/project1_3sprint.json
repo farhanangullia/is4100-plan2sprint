@@ -1,0 +1,178 @@
+{
+    "projectId": "1",
+    "title": "Live StreamEr 2.0",
+    "description": "Application to stream videos at lightning speed and offers betting services",
+    "availableUserStories": [
+        {
+            "priority": 1,
+            "details": "I want to download videos",
+            "tasks": []
+        },
+        {
+            "priority": 2,
+            "details": "I want to place bets",
+            "tasks": []
+        }
+    ],
+    "sprints": [
+        {
+            "sprintNum": 1,
+            "userStories": [
+                {
+                    "priority": 1,
+                    "details": "I want to login with my account",
+                    "tasks": [
+                        {
+                            "description": "Do login UI",
+                            "EV": 10,
+                            "AC": 10,
+                            "PV": 10
+                        },
+                        {
+                            "description": "Implement backend logic for login",
+                            "EV": 12,
+                            "AC": 12,
+                            "PV": 12
+                        },
+                        {
+                            "description": "Test login function",
+                            "EV": 2,
+                            "AC": 2,
+                            "PV": 2
+                        }
+                    ]
+                },
+                {
+                    "priority": 2,
+                    "details": "I want to browse channels",
+                    "tasks": [
+                        {
+                            "description": "Do UI for list of channels",
+                            "EV": 15,
+                            "AC": 17,
+                            "PV": 15
+                        },
+                        {
+                            "description": "Implement backend logic for channel routing",
+                            "EV": 24,
+                            "AC": 32,
+                            "PV": 24
+                        },
+                        {
+                            "description": "Test channel routing function",
+                            "EV": 5,
+                            "AC": 7,
+                            "PV": 5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "sprintNum": 2,
+            "userStories": [
+                {
+                    "priority": 1,
+                    "details": "I want to register as a member",
+                    "tasks": [
+                        {
+                            "description": "Do UI for registering",
+                            "EV": 10,
+                            "AC": 9,
+                            "PV": 10
+                        },
+                        {
+                            "description": "Implement backend logic for registering",
+                            "EV": 17,
+                            "AC": 15,
+                            "PV": 17
+                        },
+                        {
+                            "description": "Test register function",
+                            "EV": 3,
+                            "AC": 1,
+                            "PV": 3
+                        }
+                    ]
+                },
+                {
+                    "priority": 2,
+                    "details": "I want to create a new channel",
+                    "tasks": [
+                        {
+                            "description": "Do UI for creating a channel",
+                            "EV": 20,
+                            "AC": 15,
+                            "PV": 15
+                        },
+                        {
+                            "description": "Implement backend logic for creating a new channel",
+                            "EV": 24,
+                            "AC": 18,
+                            "PV": 18
+                        },
+                        {
+                            "description": "Test create a new channel function",
+                            "EV": 5,
+                            "AC": 2,
+                            "PV": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "sprintNum": 3,
+            "userStories": [
+                {
+                    "priority": 1,
+                    "details": "I want to mark a channel as favourite",
+                    "tasks": [
+                        {
+                            "description": "Do mark favourite UI",
+                            "EV": 10,
+                            "AC": 13,
+                            "PV": 13
+                        },
+                        {
+                            "description": "Implement backend logic for marking favourite",
+                            "EV": 25,
+                            "AC": 21,
+                            "PV": 21
+                        },
+                        {
+                            "description": "Test mark favourite function",
+                            "EV": 6,
+                            "AC": 8,
+                            "PV": 8
+                        }
+                    ]
+                },
+                {
+                    "priority": 2,
+                    "details": "I want to view my favourite",
+                    "tasks": [
+                        {
+                            "description": "Do UI for viewing favourites",
+                            "EV": 15,
+                            "AC": 15,
+                            "PV": 15
+                        },
+                        {
+                            "description": "Implement backend logic for viewing favourites",
+                            "EV": 32,
+                            "AC": 32,
+                            "PV": 32
+                        },
+                        {
+                            "description": "Test view favourites function",
+                            "EV": 3,
+                            "AC": 3,
+                            "PV": 3
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
