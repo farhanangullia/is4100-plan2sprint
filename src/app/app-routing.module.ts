@@ -4,6 +4,7 @@ import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FullscreenOverlayContainer } from '@angular/cdk/overlay';
 import { UserStoriesComponent } from './pages/user-stories/user-stories.component';
+import { PastSprintsComponent } from './pages/past-sprints/past-sprints.component';
 import { CurrentSprintComponent } from './pages/current-sprint/current-sprint.component';
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: ':projectId/userstories', component: UserStoriesComponent },
-      { path: ':projectId/currentsprint', component: CurrentSprintComponent}
+      { path: ':projectId/pastsprints', component: PastSprintsComponent },
+      { path: ':projectId/currentsprint', component: CurrentSprintComponent }
     ]
   }
 
