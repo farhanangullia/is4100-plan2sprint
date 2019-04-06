@@ -23,12 +23,20 @@ import { CodeHighlighterModule } from 'primeng/primeng';
 import { CheckboxModule } from 'primeng/primeng';
 import { ToggleButtonModule } from 'primeng/primeng';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { PastSprintsComponent } from './pages/past-sprints/past-sprints.component';
 import { CurrentSprintComponent } from './pages/current-sprint/current-sprint.component';
+import { TreeModule } from 'primeng/tree';
+import { TreeDragDropService } from 'primeng/components/common/api';
+import { TableModule } from 'primeng/table';
+import { DataTableModule } from 'primeng/datatable';
+import { PaginatorModule } from 'primeng/paginator';
+
+
 
 
 @NgModule({
@@ -38,6 +46,7 @@ import { CurrentSprintComponent } from './pages/current-sprint/current-sprint.co
     HomeComponent,
     UserStoriesComponent,
     TaskTableComponent,
+    PastSprintsComponent,
     CurrentSprintComponent
   ],
   imports: [
@@ -58,9 +67,15 @@ import { CurrentSprintComponent } from './pages/current-sprint/current-sprint.co
     ToggleButtonModule,
     DropdownModule,
     FormsModule,
+    ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
-    ToastModule
+    ToastModule,
+    TreeModule,
+    TableModule,
+    DataTableModule,
+    PaginatorModule,
+    DataViewModule
   ],
   providers: [
     MessageService

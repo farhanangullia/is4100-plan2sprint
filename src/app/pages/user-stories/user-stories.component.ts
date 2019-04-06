@@ -5,6 +5,7 @@ import * as project2Data from '../../../data/project2_onesprint.json';
 import * as project3Data from '../../../data/project3_onesprint.json';
 import { TouchSequence } from 'selenium-webdriver';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 class UserStory {
   priority: string;
@@ -44,7 +45,7 @@ export class UserStoriesComponent implements OnInit {
   projectId: any;
 
   constructor(
-    private route: ActivatedRoute, private messageService: MessageService
+    private route: ActivatedRoute, private messageService: MessageService, private router: Router
   ) {
     this.userStories2 = [];
   }
@@ -59,6 +60,7 @@ export class UserStoriesComponent implements OnInit {
         this.projectId = params.projectId;
         this.currentProject = JSON.parse(localStorage.getItem(params.projectId));
         this.currentSprintNum = this.currentProject.default.sprints.length;
+        console.log('proj', this.currentProject);
         console.log(this.currentProject.default.sprints[this.currentSprintNum - 1].userStories);
 
         this.userStories = this.currentProject.default.availableUserStories;
@@ -115,5 +117,10 @@ export class UserStoriesComponent implements OnInit {
     // var retrievedObj = localStorage.getItem('userStories');
     // console.log('retrieved obj ', JSON.parse(retrievedObj));
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New User Story Created' });
+  }
+
+  redirectToPastSprints(i) {
+    console.log(i);
+    this.router.navigateByUrl('/' + i + "/pastsprints");
   }
 }

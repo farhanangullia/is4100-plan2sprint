@@ -1,21 +1,48 @@
 <div class="content-container">
-    <div fxLayout="row">
-        <div fxFlex="75" fxLayoutAlign="start center">
-            <h1>Projects</h1>
+    <mat-sidenav-container class="mat-drawer-content">
+        <div class="content">
+            <div fxLayout="row">
+                <div fxFlex="75" fxLayoutAlign="start center">
+                    <h1>Projects</h1>
+                </div>
+                <div fxFlex="25" fxLayoutAlign="end center">
+                    <button mat-icon-button aria-label="add project" (click)="projectModal(mytemplate)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div *ngFor="let project of allProjs">
+                <mat-card (click)="redirectToUserstories(project.default.projectId)">
+                    <mat-card-title>{{project.default.title}}</mat-card-title>
+                    <mat-card-content>
+                        <p> {{project.default.description}}</p>
+                    </mat-card-content>
+                </mat-card>
+                <br />
+            </div>
         </div>
-        <div fxFlex="25" fxLayoutAlign="end center">
-            <button mat-icon-button aria-label="add project" (click)="addProject()">
-                <mat-icon>add</mat-icon>
-            </button>
-        </div>
-    </div>
-    <div class="row card-container" *ngFor="let project of allProjs; let i = index">
-        <mat-card (click)="redirectToUserstories(project.default.projectId)">
-            <mat-card-title>{{project.default.title}}</mat-card-title>
-            <mat-card-content>
-                <p> {{project.default.description}}</p>
-            </mat-card-content>
-        </mat-card>
-        <br />
-    </div>
+
+    </mat-sidenav-container>
+
 </div>
+
+<ng-template #mytemplate>Hello
+
+    <form [formGroup]="createProjectForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field>
+            <input matInput formControlName="projectTitle" placeholder="Project Title">
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+
+            <input matInput formControlName="projectDescription" placeholder="Project Description">
+        </mat-form-field>
+
+        <div>
+            <button mat-button type="submit">Submit</button>
+
+        </div>
+    </form>
+
+</ng-template>
