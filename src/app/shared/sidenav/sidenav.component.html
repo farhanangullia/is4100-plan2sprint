@@ -16,17 +16,17 @@
           <p matLine *ngIf="isExpanded">Projects</p>
         </a>
 
-        <!-- <a mat-list-item (click)="toggleActive($event)">
+        <a mat-list-item (click)="toggleActive($event)">
           <mat-icon matTooltip="Current Sprint" matTooltipPosition="after" mat-list-icon>assignment</mat-icon>
           <p matLine *ngIf="isExpanded">Current Sprint</p>
-        </a> -->
+        </a>
 
-        <a mat-list-item *ngIf="!(location.includes('/home'))" (click)="toggleActive($event)">
+        <a mat-list-item (click)="toggleActive($event)">
           <mat-icon matTooltip="Past Sprints" matTooltipPosition="after" mat-list-icon>note_add</mat-icon>
           <p matLine *ngIf="isExpanded">Past Sprints</p>
         </a>
 
-        <a mat-list-item *ngIf="!(location.includes('/home'))" (click)="toggleActive($event)">
+        <a mat-list-item (click)="toggleActive($event,'/userstories')">
           <mat-icon matTooltip="Project User Stories" matTooltipPosition="after" mat-list-icon>assignment_late</mat-icon>
           <p matLine *ngIf="isExpanded">Project User Stories</p>
         </a>
