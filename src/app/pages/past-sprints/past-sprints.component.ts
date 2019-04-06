@@ -58,7 +58,8 @@ export class PastSprintsComponent implements OnInit {
         this.sortOptions = [
           // { label: 'Newest First', value: '!supportTicketId' },
           // { label: 'Oldest First', value: 'supportTicketId' },
-          { label: 'Priority Level', value: 'userStory.priority' }
+          { label: 'Lowest Priority', value: '!priority' },
+          { label: 'Highest Priority', value: 'priority' }
         ];
 
 
@@ -101,10 +102,10 @@ export class PastSprintsComponent implements OnInit {
 
   }
 
-  showUserStory(userStory: any) {
-    this.selectedUserStory = userStory;
-    this.dialogVisible = true;
-  }
+  // showUserStory(userStory: any) {
+  //   this.selectedUserStory = userStory;
+  //   this.dialogVisible = true;
+  // }
 
 
   selectUserStory(event: Event, userStory: any) {
@@ -118,6 +119,8 @@ export class PastSprintsComponent implements OnInit {
   }
 
   onSortChange(event) {
+
+    console.log('asdsa');
     let value = event.value;
 
     if (value.indexOf('!') === 0) {

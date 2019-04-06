@@ -35,6 +35,7 @@ import { TreeDragDropService } from 'primeng/components/common/api';
 import { TableModule } from 'primeng/table';
 import { DataTableModule } from 'primeng/datatable';
 import { PaginatorModule } from 'primeng/paginator';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 
 
@@ -75,7 +76,8 @@ import { PaginatorModule } from 'primeng/paginator';
     TableModule,
     DataTableModule,
     PaginatorModule,
-    DataViewModule
+    DataViewModule,
+    ProgressBarModule
   ],
   providers: [
     MessageService

@@ -1,7 +1,7 @@
 <div style="margin:0 auto;max-width: 700px;height:100px;">
   <div style="text-align: center;padding-top: 5px;">
     <h2>Past Sprints</h2>
-    <h4>Project: {{currentProject.default.title}}</h4>
+    <h4>{{currentProject.default.title}}</h4>
   </div>
 </div>
 
@@ -22,6 +22,7 @@
         <div class="ui-g-6 ui-md-4" style="text-align:right">
           <!-- <p-toggleButton [(ngModel)]="unresolvedTickets" (onChange)="handleChange($event)" onLabel="Unresolved Tickets"
             offLabel="Resolved Tickets" [style]="{'width':'150px'}"></p-toggleButton> -->
+          Sprint
           <select id="sprintNum" #Id="ngModel" [(ngModel)]="sprintNum" name="sprintNum" (change)="onSprintChange($event);">
 
             <option [ngValue]="k.sprintNum" *ngFor="let k of sprints">

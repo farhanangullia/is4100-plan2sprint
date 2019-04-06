@@ -1,27 +1,172 @@
-<div>
-
-  <table mat-table [dataSource]="currentUserStories">
-
-    <ng-container matColumnDef="userstories">
-      <th mat-header-cell *matHeaderCellDef>User Story</th>
-      <td mat-cell *matCellDef="let element"> {{element.details}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="tasks">
-      <th mat-header-cell *matHeaderCellDef>Tasks</th>
-      <td mat-cell *matCellDef="let element">
-        <table class="task-table">
-          <tr *ngFor="let task of element.tasks">
-            <td>{{task.task.description}} </td>
-          </tr>
-        </table>
-      </td>
-  </ng-container>
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  </table>
-
+<div style="margin:0 auto;max-width: 700px;height:100px;">
+  <div style="text-align: center;padding-top: 5px;">
+    <h2>Current Sprint</h2>
+    <h4>Project: {{project.default.title}}</h4>
+  </div>
 </div>
+
+<p-dataView #dv [value]="currentUserStories" [paginator]="true" [rows]="10" layout="list" paginatorPosition="both"
+  filterBy="details" [sortField]="sortField" [sortOrder]="sortOrder">
+  <p-header>
+    <div class="ui-helper-clearfix">
+      <div class="ui-g">
+        <div class="filter-container">
+          <div style="position:relative">
+            <input type="search" pInputText placeholder="Search by details" (keyup)="dv.filter($event.target.value)">
+          </div>
+        </div>
+        <div>
+          <button mat-button (click)="openSetRange($event)">Set Range</button>
+        </div>
+      </div>
+    </div>
+  </p-header>
+
+  <ng-template let-userstory pTemplate="listItem">
+
+    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+
+      <div class="ui-g-12 ui-md-8">
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-6">Details: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{userstory.details}}</b></div>
+          <div class="ui-g-2 ui-sm-6">Priority Level: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{userstory.priority}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">Number of Tasks: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{userstory.tasks.length}}</b></div>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-1 view-icon">
+        <button type="button" (click)="selectUserStory($event, userstory)"> View All Tasks</button>
+      </div>
+      <div class="ui-g-12 ui-md-1 view-icon">
+        <button type="button" (click)="openAddTask($event, userstory)">Add Task</button>
+      </div>
+    </div>
+  </ng-template>
+</p-dataView>
+
+<p-dialog header="View Tasks" [(visible)]="displayAllTasksDialog" [responsive]="true" dismissableMask=true width="700"
+  (onAfterHide)="closeAllTasks()" [modal]="true" appendTo="body" [focusOnShow]="false">
+  <p-toast key="taskDetails"></p-toast>
+  <div class="ui-g">
+    <div class="ui-g" *ngIf="selectedUserStory">
+      <div *ngIf="selectedUserStory.tasks.length === 0">
+        You have yet to create any tasks for this user story.
+      </div>
+      <ng-container *ngFor="let task of selectedUserStory.tasks">
+        <mat-card>
+          <div class="ui-g-4">Task: </div>
+          <div class="ui-g-8">{{task.task.description}}</div>
+
+          <div class="ui-g-4">Planned Value: </div>
+          <div class="ui-g-8">{{task.task.PV}} </div>
+
+          <div class="ui-g-4">Earned Value: </div>
+          <div class="ui-g-8">{{task.task.EV}}</div>
+
+          <div class="ui-g-4">Actual Cost: </div>
+          <div class="ui-g-8">{{task.task.AC}}</div>
+
+          <button type="button"(click)="openEdit($event, task.task)">Edit</button>
+        </mat-card>
+      </ng-container>
+      <div class="ui-g-12 ui-md-1 view-icon">
+        <button type="button">Submit</button>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog header="Add Task" [(visible)]="displayAddTaskDialog" [responsive]="true" dismissableMask=true width="700"
+  (onAfterHide)="closeAddTask()" [modal]="true" appendTo="body" [focusOnShow]="false">
+  <div class="ui-g">
+    <form [formGroup]="createNewTaskForm" (ngSubmit)="onSubmitNewTask()">
+
+      <mat-form-field>
+        <input matInput formControlName="newTaskName" placeholder="New Task Name">
+      </mat-form-field>
+
+      <div>
+        <button mat-button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</p-dialog>
+
+<p-dialog header="Set Range" [(visible)]="displaySetRange" [responsive]="true" dismissableMask=true width="700"
+  (onAfterHide)="closeSetRange()" [modal]="true" appendTo="body" [focusOnShow]="false">
+  <div class="ui-g">
+    <form [formGroup]="createRangeForm" (ngSubmit)="onSubmitRange()">
+      <div>
+        <mat-label>High: </mat-label>
+        <mat-form-field>
+          <input type="number" matInput formControlName="highLowerRange">
+        </mat-form-field>
+        to
+        <mat-form-field>
+          <input type="number" matInput formControlName="highUpperRange">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-label>Medium: </mat-label>
+        <mat-form-field>
+          <input type="number" matInput formControlName="medLowerRange">
+        </mat-form-field>
+        to
+        <mat-form-field>
+          <input type="number" matInput formControlName="medUpperRange">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-label>Low: </mat-label>
+        <mat-form-field>
+          <input type="number" matInput formControlName="lowLowerRange">
+        </mat-form-field>
+        to
+        <mat-form-field>
+          <input type="number" matInput formControlName="lowUpperRange">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</p-dialog>
+
+<p-dialog header="Edit Values" [(visible)]="displayEdit" [responsive]="true" dismissableMask=true width="700"
+  (onAfterHide)="closeEdit()" [modal]="true" appendTo="body" [focusOnShow]="false">
+  <div class="ui-g">
+    <form [formGroup]="editValueForm" (ngSubmit)="onSaveValue()">
+      <div>
+        <mat-label>Actual Cost: </mat-label>
+        <mat-form-field>
+          <input type="number" matInput formControlName="ac">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-label>Planned Value: </mat-label>
+        <mat-form-field>
+          <input type="number" matInput formControlName="pv">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-label>Earned Value: </mat-label>
+        <mat-form-field>
+          <input type="number" matInput formControlName="ev">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</p-dialog>
