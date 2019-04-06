@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, forwardRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as project1Data from '../../../data/project1_1sprint.json';
@@ -7,6 +7,7 @@ import * as project3Data from '../../../data/project3_3sprint.json';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
+import { SidenavComponent } from 'src/app/shared/sidenav/sidenav.component.js';
 
 
 @Component({
@@ -22,11 +23,16 @@ export class HomeComponent implements OnInit {
   createProjectForm: FormGroup;
 
 
-  constructor(public dialog: MatDialog, private router: Router) {
+  constructor(public dialog: MatDialog, private router: Router,
+    // @Inject(forwardRef(() => SidenavComponent)) private sideNav: SidenavComponent
+  ) {
+    // this.sideNav = sideNav;
     this.allProjs = new Array();
   }
 
   ngOnInit() {
+    console.log(this.router.url);
+    // this.sideNav.ngOnInit();
     this.createFormControl();
     this.createForm();
     // console.log("test");

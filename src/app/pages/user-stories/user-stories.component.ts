@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, forwardRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as project1Data from '../../../data/project1_onesprint.json';
 import * as project2Data from '../../../data/project2_onesprint.json';
@@ -6,6 +6,7 @@ import * as project3Data from '../../../data/project3_onesprint.json';
 import { TouchSequence } from 'selenium-webdriver';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { SidenavComponent } from 'src/app/shared/sidenav/sidenav.component.js';
 
 class UserStory {
   priority: string;
@@ -45,15 +46,20 @@ export class UserStoriesComponent implements OnInit {
   projectId: any;
 
   constructor(
-    private route: ActivatedRoute, private messageService: MessageService, private router: Router
+    private route: ActivatedRoute, private messageService: MessageService,
+    // @Inject(forwardRef(()=> SidenavComponent)) private sideNav: SidenavComponent, 
+    private router: Router
   ) {
     this.userStories2 = [];
   }
 
   ngOnInit() {
+    console.log(this.route.url);
+    // this.sideNav.ngOnInit();
     // if (localStorage.getItem('project1') === null) {
     //   localStorage.setItem('project1', JSON.stringify(project1Data));
     // }
+
 
     this.route.params.subscribe(
       params => {
