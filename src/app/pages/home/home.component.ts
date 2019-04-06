@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, forwardRef } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as project1Data from '../../../data/project1_1sprint.json';
@@ -7,7 +7,6 @@ import * as project3Data from '../../../data/project3_3sprint.json';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl } from '@angular/forms';
 import swal from 'sweetalert2';
-import { SidenavComponent } from '../../shared/sidenav/sidenav.component';
 
 
 @Component({
@@ -22,18 +21,18 @@ export class HomeComponent implements OnInit {
   projectDescription: FormControl;
   createProjectForm: FormGroup;
 
-  constructor(public dialog: MatDialog, private router: Router,
-    @Inject(forwardRef(() => SidenavComponent)) private sideNav: SidenavComponent) {
-    this.sideNav = sideNav;
+
+  constructor(public dialog: MatDialog, private router: Router) {
     this.allProjs = new Array();
   }
 
   ngOnInit() {
-    console.log(this.router.url)
-    this.sideNav.ngOnInit();
     this.createFormControl();
     this.createForm();
-
+    // console.log("test");
+    // console.log(localStorage);
+    // console.log('ab', this.allProjs);
+    // localStorage.clear();
     console.log(project1Data);
     if (localStorage.getItem(project1Data.projectId) === null) {
       localStorage.setItem(project1Data.projectId, JSON.stringify(project1Data));
@@ -46,12 +45,12 @@ export class HomeComponent implements OnInit {
     }
 
     for (let i = 1; i <= localStorage.length; i++) {
-      // console.log(localStorage.key(i))
+      console.log(localStorage.key(i))
       var project = JSON.parse(localStorage.getItem(i.toString()))
-      // console.log(project)
+      console.log(project)
       this.allProjs.push(project);
     }
-    // console.log(this.allProjs);
+    console.log(this.allProjs);
   }
 
   createFormControl() {
@@ -69,7 +68,7 @@ export class HomeComponent implements OnInit {
       projectDescription: this.projectDescription
     })
 
-    // console.log(this.projectTitle, this.projectDescription);
+    console.log(this.projectTitle, this.projectDescription);
   }
 
   redirectToUserstories(i) {
