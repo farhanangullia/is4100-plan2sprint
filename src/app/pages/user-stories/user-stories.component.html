@@ -1,7 +1,7 @@
 <p-toast position="bottom-center"></p-toast>
 <div style="margin:0 auto;max-width: 700px;height:100px;">
   <div style="text-align: center;padding-top: 5px;">
-    <h2>Project User Stories</h2>
+    <h2>User Stories Planner</h2>
     <h4>Project: {{currentProject.default.title}}</h4>
   </div>
 </div>
@@ -25,9 +25,6 @@
   </div>
   <div style="text-align: center;padding-top: 10px;">
     <p-button label="Save Sprint" icon="pi pi-save" iconPos="left" styleClass="ui-button-warning" (onClick)="saveSprint($event)"></p-button>
-  </div>
-  <div style="text-align: center;padding-top: 10px;">
-    <p-button label="Past Sprints" iconPos="left" styleClass="ui-button-danger" (onClick)="redirectToPastSprints(projectId)"></p-button>
   </div>
 </div>
 
