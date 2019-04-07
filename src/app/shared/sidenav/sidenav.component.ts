@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 @Component({
@@ -6,8 +6,6 @@ import { filter } from 'rxjs/operators';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-
-@Injectable()
 export class SidenavComponent implements OnInit {
 
   notHomePage: Boolean = false;

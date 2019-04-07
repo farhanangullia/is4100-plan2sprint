@@ -21,7 +21,7 @@
           <p matLine *ngIf="isExpanded">Current Sprint</p>
         </a> -->
 
-        <a mat-list-item *ngIf="!(location.includes('/home'))" (click)="toggleActive($event,'/pastsprints')">
+        <a mat-list-item *ngIf="!(location.includes('/home'))" (click)="toggleActive($event)">
           <mat-icon matTooltip="Past Sprints" matTooltipPosition="after" mat-list-icon>note_add</mat-icon>
           <p matLine *ngIf="isExpanded">Past Sprints</p>
         </a>
