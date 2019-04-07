@@ -116,7 +116,7 @@ export class UserStoriesComponent implements OnInit {
 
     // this.userStories.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails });
     this.displayDialog = false;
-    this.currentProject.default.availableUserStories.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails, 'tasks': [] });
+    this.currentProject.default.availableUserStories.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails, 'tasks': [], 'totalPV': 0, 'totalAC': 0, 'totalEV': 0  });
     console.log('New: ', this.currentProject);
     localStorage.removeItem(this.projectId);
     localStorage.setItem(this.projectId, JSON.stringify(this.currentProject));

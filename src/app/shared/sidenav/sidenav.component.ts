@@ -32,6 +32,7 @@ export class SidenavComponent implements OnInit {
   element: HTMLElement;
 
   toggleActive(event: any, component: string) {
+    console.log(event)
     event.preventDefault();
     if (this.element !== undefined) {
       this.element.style.backgroundColor = "white";

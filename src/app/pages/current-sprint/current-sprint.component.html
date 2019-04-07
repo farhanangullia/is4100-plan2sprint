@@ -18,6 +18,9 @@
         <div>
           <button mat-button (click)="openSetRange($event)">Set Range</button>
         </div>
+        <div>
+            <button mat-button (click)="onSubmitSprint()" type="button">Submit</button>
+        </div>
       </div>
     </div>
   </p-header>
@@ -47,8 +50,9 @@
   </ng-template>
 </p-dataView>
 
-<p-dialog header="View Tasks" [(visible)]="displayAllTasksDialog" [responsive]="true" dismissableMask=true width="700"
-  (onAfterHide)="closeAllTasks()" [modal]="true" appendTo="body" [focusOnShow]="false">
+<p-dialog header="View All Tasks" [(visible)]="displayAllTasksDialog" [responsive]="true" dismissableMask=true
+  width="700" (onAfterHide)="closeAllTasks()" [modal]="true" appendTo="body" [focusOnShow]="false"
+  [contentStyle]="{'height': '450px'}">
   <p-toast key="taskDetails"></p-toast>
   <div class="ui-g">
     <div class="ui-g" *ngIf="selectedUserStory">
@@ -58,23 +62,20 @@
       <ng-container *ngFor="let task of selectedUserStory.tasks">
         <mat-card>
           <div class="ui-g-4">Task: </div>
-          <div class="ui-g-8">{{task.task.description}}</div>
+          <div class="ui-g-8">{{task.description}}</div>
 
           <div class="ui-g-4">Planned Value: </div>
-          <div class="ui-g-8">{{task.task.PV}} </div>
+          <div class="ui-g-8">{{task.PV}} </div>
 
           <div class="ui-g-4">Earned Value: </div>
-          <div class="ui-g-8">{{task.task.EV}}</div>
+          <div class="ui-g-8">{{task.EV}}</div>
 
           <div class="ui-g-4">Actual Cost: </div>
-          <div class="ui-g-8">{{task.task.AC}}</div>
+          <div class="ui-g-8">{{task.AC}}</div>
 
-          <button type="button"(click)="openEdit($event, task.task)">Edit</button>
+          <button type="button" (click)="openEdit($event, task)">Edit</button>
         </mat-card>
       </ng-container>
-      <div class="ui-g-12 ui-md-1 view-icon">
-        <button type="button">Submit</button>
-      </div>
     </div>
   </div>
 </p-dialog>
@@ -82,16 +83,33 @@
 <p-dialog header="Add Task" [(visible)]="displayAddTaskDialog" [responsive]="true" dismissableMask=true width="700"
   (onAfterHide)="closeAddTask()" [modal]="true" appendTo="body" [focusOnShow]="false">
   <div class="ui-g">
-    <form [formGroup]="createNewTaskForm" (ngSubmit)="onSubmitNewTask()">
+    <form [formGroup]="createNewTaskForm" (ngSubmit)="analyse()">
 
       <mat-form-field>
         <input matInput formControlName="newTaskName" placeholder="New Task Name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="number" matInput formControlName="pv" placeholder="Planned Value">
       </mat-form-field>
 
       <div>
         <button mat-button type="submit">Submit</button>
       </div>
     </form>
+  </div>
+</p-dialog>
+
+
+<p-dialog header="Analysis" [(visible)]="displayAnalysis" [responsive]="true" dismissableMask=true width="700"
+  (onAfterHide)="closeAnalysis()" [modal]="true" appendTo="body" [focusOnShow]="false">
+  <div class="ui-g" *ngIf="warningMessage">
+    <div [innerHTML]="warningMessage"></div>
+  </div>
+  <div>
+    <button mat-button (click)="onSubmitNewTask()">Submit</button>
+
+    <button mat-button (click)="closeAnalysis()">Cancel</button>
   </div>
 </p-dialog>
 
@@ -151,13 +169,6 @@
       </div>
 
       <div>
-        <mat-label>Planned Value: </mat-label>
-        <mat-form-field>
-          <input type="number" matInput formControlName="pv">
-        </mat-form-field>
-      </div>
-
-      <div>
         <mat-label>Earned Value: </mat-label>
         <mat-form-field>
           <input type="number" matInput formControlName="ev">
@@ -165,8 +176,9 @@
       </div>
 
       <div>
-        <button mat-button type="submit">Submit</button>
+        <button mat-button type="submit">Save</button>
       </div>
+
     </form>
   </div>
 </p-dialog>

@@ -6,21 +6,31 @@
         {
             "priority": 1,
             "details": "I want to upload photos",
+            "totalEV": 0,
+            "totalAC": 0,
+            "totalPV": 0,
             "tasks": []
         },
         {
             "priority": 2,
             "details": "I want to delete photos",
+            "totalEV": 0,
+            "totalAC": 0,
+            "totalPV": 0,
             "tasks": []
         }
     ],
     "sprints": [
         {
             "sprintNum": 1,
+            "totalPV": 68,
             "userStories": [
                 {
                     "priority": 1,
                     "details": "I want to login with my account",
+                    "totalEV": 24,
+                    "totalAC": 24,
+                    "totalPV": 24,
                     "tasks": [
                         {
                             "description": "Do login UI",
@@ -45,6 +55,9 @@
                 {
                     "priority": 2,
                     "details": "I want to learn how to use the app",
+                    "totalEV": 44,
+                    "totalAC": 56,
+                    "totalPV": 44,
                     "tasks": [
                         {
                             "description": "Do UI for tutorial",
@@ -70,9 +83,13 @@
         },
         {
             "sprintNum": 2,
+            "totalPV": 65,
             "userStories": [
                 {
                     "priority": 1,
+                    "totalEV": 30,
+                    "totalAC": 25,
+                    "totalPV": 30,
                     "details": "I want to register as a member",
                     "tasks": [
                         {
@@ -98,6 +115,9 @@
                 {
                     "priority": 2,
                     "details": "I want to edit photos",
+                    "totalEV": 49,
+                    "totalAC": 35,
+                    "totalPV": 35,
                     "tasks": [
                         {
                             "description": "Do UI for photo editor",

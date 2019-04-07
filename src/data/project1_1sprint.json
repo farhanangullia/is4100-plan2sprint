@@ -6,21 +6,101 @@
         {
             "priority": 1,
             "details": "I want to download videos",
+            "totalEV": 0,
+            "totalAC": 0,
+            "totalPV": 0,
             "tasks": []
         },
         {
             "priority": 2,
             "details": "I want to place bets",
+            "totalEV": 0,
+            "totalAC": 0,
+            "totalPV": 0,
             "tasks": []
         }
     ],
     "sprints": [
         {
             "sprintNum": 1,
+            "totalPV": 30,
             "userStories": [
                 {
                     "priority": 1,
                     "details": "I want to login with my account",
+                    "totalEV": 10,
+                    "totalAC": 10,
+                    "totalPV": 10,
+                    "tasks": [
+                        {
+                            "description": "Do login UI",
+                            "EV": 5,
+                            "AC": 5,
+                            "PV": 5
+                        },
+                        {
+                            "description": "Implement backend logic for login",
+                            "EV": 5,
+                            "AC": 5,
+                            "PV": 5
+                        }
+                    ]
+                },
+                {
+                    "priority": 2,
+                    "details": "I want to browse channels",
+                    "totalEV": 10,
+                    "totalAC": 10,
+                    "totalPV": 10,
+                    "tasks": [
+                        {
+                            "description": "Do UI for list of channels",
+                            "EV": 5,
+                            "AC": 5,
+                            "PV": 5
+                        },
+                        {
+                            "description": "Implement backend logic for channel routing",
+                            "EV": 5,
+                            "AC": 5,
+                            "PV": 5
+                        }
+                    ]
+                },
+                {
+                    "priority": 5,
+                    "details": "I want to login",
+                    "totalEV": 10,
+                    "totalAC": 10,
+                    "totalPV": 10,
+                    "tasks": [
+                        {
+                            "description": "Do UI for login",
+                            "EV": 5,
+                            "AC": 5,
+                            "PV": 5
+                        },
+                        {
+                            "description": "Implement backend logic for login",
+                            "EV": 5,
+                            "AC": 5,
+                            "PV": 5
+                        }
+                    ]
+                }
+
+            ]
+        },
+        {
+            "sprintNum": 2,
+            "totalPV": 30,
+            "userStories": [
+                {
+                    "priority": 1,
+                    "details": "I want to login with my account",
+                    "totalEV": 22,
+                    "totalAC": 22,
+                    "totalPV": 22,
                     "tasks": [
                         {
                             "description": "Do login UI",
@@ -39,6 +119,9 @@
                 {
                     "priority": 2,
                     "details": "I want to browse channels",
+                    "totalEV": 49,
+                    "totalAC": 49,
+                    "totalPV": 49,
                     "tasks": [
                         {
                             "description": "Do UI for list of channels",
@@ -53,11 +136,34 @@
                             "PV": 24
                         }
                     ]
+                },
+                {
+                    "priority": 5,
+                    "details": "I want to login",
+                    "totalEV": 49,
+                    "totalAC": 49,
+                    "totalPV": 49,
+                    "tasks": [
+                        {
+                            "description": "Do UI for login",
+                            "EV": 15,
+                            "AC": 17,
+                            "PV": 15
+                        },
+                        {
+                            "description": "Implement backend logic for login",
+                            "EV": 24,
+                            "AC": 32,
+                            "PV": 24
+                        }
+                    ]
                 }
+
             ]
         },
         {
-            "sprintNum": 2,
+            "sprintNum": 3,
+            "totalPV": 0,
             "userStories": []
         }
     ]
