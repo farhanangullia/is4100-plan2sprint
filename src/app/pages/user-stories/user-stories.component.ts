@@ -7,6 +7,7 @@ import { TouchSequence } from 'selenium-webdriver';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { SidenavComponent } from 'src/app/shared/sidenav/sidenav.component';
+import swal from 'sweetalert2';
 
 class UserStory {
   priority: string;
@@ -47,7 +48,7 @@ export class UserStoriesComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute, private messageService: MessageService,
-    @Inject(forwardRef(()=> SidenavComponent)) private sideNav: SidenavComponent, 
+    @Inject(forwardRef(() => SidenavComponent)) private sideNav: SidenavComponent,
     private router: Router
   ) {
     this.userStories2 = [];
@@ -104,7 +105,17 @@ export class UserStoriesComponent implements OnInit {
     localStorage.removeItem(this.projectId);
     localStorage.setItem(this.projectId, JSON.stringify(this.currentProject));
     console.log(this.currentProject);
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Current Sprint Saved' });
+    // this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Current Sprint Saved' });
+    swal.fire({
+      type: 'success',
+      title: "Sprint Saved",
+
+    }).then(() => {
+
+      // this.dialog.closeAll();
+    }
+
+    )
   }
 
   onDialogHide() {
@@ -116,13 +127,23 @@ export class UserStoriesComponent implements OnInit {
 
     // this.userStories.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails });
     this.displayDialog = false;
-    this.currentProject.default.availableUserStories.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails, 'tasks': [], 'totalPV': 0, 'totalAC': 0, 'totalEV': 0  });
+    this.currentProject.default.availableUserStories.push({ 'priority': this.newStoryPriorityLevel, 'details': this.newStoryDetails, 'tasks': [], 'totalPV': 0, 'totalAC': 0, 'totalEV': 0 });
     console.log('New: ', this.currentProject);
     localStorage.removeItem(this.projectId);
     localStorage.setItem(this.projectId, JSON.stringify(this.currentProject));
     // var retrievedObj = localStorage.getItem('userStories');
     // console.log('retrieved obj ', JSON.parse(retrievedObj));
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New User Story Created' });
+    // this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New User Story Created' });
+    swal.fire({
+      type: 'success',
+      title: "New User Story Created",
+
+    }).then(() => {
+
+      // this.dialog.closeAll();
+    }
+
+    )
   }
 
   redirectToPastSprints(i) {

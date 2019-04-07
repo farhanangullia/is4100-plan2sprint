@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { networkInterfaces } from 'os';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-current-sprint',
@@ -247,6 +248,16 @@ export class CurrentSprintComponent implements OnInit {
     this.createJSONTaskObject(this.createNewTaskForm.value.newTaskName, this.createNewTaskForm.value.pv, this.selectedUserStory);
     this.closeAddTask();
     this.closeAnalysis();
+    swal.fire({
+      type: 'success',
+      title: "Task Submitted",
+
+    }).then(() => {
+
+      // this.dialog.closeAll();
+    }
+
+    )
   }
 
   onSubmitRange() {
@@ -256,6 +267,16 @@ export class CurrentSprintComponent implements OnInit {
       const medLowerRange = this.createRangeForm.value.medLowerRange;
       const lowUpperRange = this.createRangeForm.value.lowUpperRange;
       this.createJSONRangeObject(highLowerRange, medUpperRange, medLowerRange, lowUpperRange)
+      swal.fire({
+        type: 'success',
+        title: "Workload Range Set",
+
+      }).then(() => {
+
+        // this.dialog.closeAll();
+      }
+
+      )
     }
   }
 
@@ -270,14 +291,14 @@ export class CurrentSprintComponent implements OnInit {
       for (var j = 0; j < this.currentSprint.userStories[i].tasks.length; j++) {
         currWorkload += this.currentSprint.userStories[i].tasks[j].PV;
         totalPV += this.currentSprint.userStories[i].tasks[j].PV;
-        totalEV +=  this.currentSprint.userStories[i].tasks[j].EV;
+        totalEV += this.currentSprint.userStories[i].tasks[j].EV;
         totalAC += this.currentSprint.userStories[i].tasks[j].AC;
       }
-      this.project.default.sprints[totalSprintLen -1].userStories[i].totalPV = totalPV;
-      this.project.default.sprints[totalSprintLen -1].userStories[i].totalEV = totalEV;
-      this.project.default.sprints[totalSprintLen -1].userStories[i].totalAC = totalAC;
+      this.project.default.sprints[totalSprintLen - 1].userStories[i].totalPV = totalPV;
+      this.project.default.sprints[totalSprintLen - 1].userStories[i].totalEV = totalEV;
+      this.project.default.sprints[totalSprintLen - 1].userStories[i].totalAC = totalAC;
     }
-    this.project.default.sprints[totalSprintLen -1].totalPV = currWorkload;
+    this.project.default.sprints[totalSprintLen - 1].totalPV = currWorkload;
     console.log(this.project.default)
 
     var emptySprint = {
@@ -287,6 +308,16 @@ export class CurrentSprintComponent implements OnInit {
     }
     this.project.default.sprints.push(emptySprint);
     localStorage.setItem(this.projectId, JSON.stringify(this.project));
+    swal.fire({
+      type: 'success',
+      title: "Sprint Completed",
+
+    }).then(() => {
+
+      // this.dialog.closeAll();
+    }
+
+    )
     this.ngOnInit();
   }
 
@@ -301,6 +332,16 @@ export class CurrentSprintComponent implements OnInit {
       this.project.default.sprints[latestSprint - 1].userStories[userStoryIndex].tasks[taskIndex].EV = EV;
       localStorage.setItem(this.projectId, JSON.stringify(this.project))
       this.closeEdit();
+      swal.fire({
+        type: 'success',
+        title: "Task Saved",
+
+      }).then(() => {
+
+        // this.dialog.closeAll();
+      }
+
+      )
     }
   }
 

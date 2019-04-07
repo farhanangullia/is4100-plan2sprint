@@ -11,6 +11,8 @@ export class SidenavComponent implements OnInit {
   notHomePage: Boolean = false;
   location = '';
 
+  currentProjectId: any;
+
   constructor(private router: Router) {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
@@ -84,6 +86,21 @@ export class SidenavComponent implements OnInit {
         }
       )
     }
+  }
+
+  redirectToUserstories(event: any) {
+    this.currentProjectId = localStorage.getItem('currentProjectId');
+    this.router.navigateByUrl('/' + this.currentProjectId + "/userstories");
+  }
+
+  redirectToPastSprints(event: any) {
+    this.currentProjectId = localStorage.getItem('currentProjectId');
+    this.router.navigateByUrl('/' + this.currentProjectId + "/pastsprints");
+  }
+
+  redirectToCurrentSprint(event: any) {
+    this.currentProjectId = localStorage.getItem('currentProjectId');
+    this.router.navigateByUrl('/' + this.currentProjectId + "/currentsprint");
   }
 
 }

@@ -38,7 +38,8 @@ export class HomeComponent implements OnInit {
     // console.log("test");
     // console.log(localStorage);
     // console.log('ab', this.allProjs);
-    localStorage.clear();
+    // localStorage.clear();
+    localStorage.removeItem('currentProjectId');
     console.log(project1Data);
     if (localStorage.getItem(project1Data.projectId) === null) {
       localStorage.setItem(project1Data.projectId, JSON.stringify(project1Data));
@@ -78,6 +79,7 @@ export class HomeComponent implements OnInit {
   }
 
   redirectToUserstories(i) {
+    localStorage.setItem('currentProjectId', i);
     this.router.navigateByUrl('/' + i + "/userstories");
   }
 
