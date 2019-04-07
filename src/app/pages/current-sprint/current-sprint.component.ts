@@ -250,7 +250,7 @@ export class CurrentSprintComponent implements OnInit {
     this.closeAnalysis();
     swal.fire({
       type: 'success',
-      title: "Task Submitted",
+      title: "Task Added",
 
     }).then(() => {
 
