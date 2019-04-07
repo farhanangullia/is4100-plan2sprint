@@ -15,7 +15,7 @@
 </div>
 
 <p-dataView #dv [value]="currentUserStories" [paginator]="true" [rows]="10" layout="list" paginatorPosition="both"
-  filterBy="details" [sortField]="sortField" [sortOrder]="sortOrder">
+  filterBy="details">
   <p-header>
     <div class="ui-helper-clearfix">
       <div class="ui-g">
@@ -59,9 +59,8 @@
   </ng-template>
 </p-dataView>
 
-<p-dialog header="View All Tasks" [(visible)]="displayAllTasksDialog" [responsive]="true" dismissableMask=true
-  width="700" (onAfterHide)="closeAllTasks()" [modal]="true" appendTo="body" [focusOnShow]="false"
-  [contentStyle]="{'height': '450px'}">
+<p-dialog header="View All Tasks" [(visible)]="displayAllTasksDialog" [responsive]="true" dismissableMask=true width="700"
+  (onAfterHide)="closeAllTasks()" [modal]="true" appendTo="body" [focusOnShow]="false" [contentStyle]="{'height': '450px'}">
   <p-toast key="taskDetails"></p-toast>
   <div class="ui-g">
     <div class="ui-g" *ngIf="selectedUserStory">
