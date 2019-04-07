@@ -24,10 +24,8 @@ export class CurrentSprintComponent implements OnInit {
   createNewTaskForm: FormGroup;
   projectId: any;
   highLowerRange: FormControl;
-  highUpperRange: FormControl;
   medLowerRange: FormControl;
   medUpperRange: FormControl;
-  lowLowerRange: FormControl;
   lowUpperRange: FormControl;
   createRangeForm: FormGroup;
   ac: FormControl;
@@ -130,22 +128,16 @@ export class CurrentSprintComponent implements OnInit {
     this.pv = new FormControl('', {
       updateOn: 'change'
     })
-    this.highLowerRange = new FormControl('', {
+    this.highLowerRange = new FormControl(0, {
       updateOn: 'change'
     })
-    this.highUpperRange = new FormControl('', {
+    this.medLowerRange = new FormControl(0, {
       updateOn: 'change'
     })
-    this.medLowerRange = new FormControl('', {
+    this.medUpperRange = new FormControl(0, {
       updateOn: 'change'
     })
-    this.medUpperRange = new FormControl('', {
-      updateOn: 'change'
-    })
-    this.lowLowerRange = new FormControl('', {
-      updateOn: 'change'
-    })
-    this.lowUpperRange = new FormControl('', {
+    this.lowUpperRange = new FormControl(0, {
       updateOn: 'change'
     })
     this.createEditValueControl();
@@ -158,10 +150,8 @@ export class CurrentSprintComponent implements OnInit {
     });
     this.createRangeForm = new FormGroup({
       highLowerRange: this.highLowerRange,
-      highUpperRange: this.highUpperRange,
       medLowerRange: this.medLowerRange,
       medUpperRange: this.medUpperRange,
-      lowLowerRange: this.lowLowerRange,
       lowUpperRange: this.lowUpperRange,
     });
   }
@@ -177,10 +167,8 @@ export class CurrentSprintComponent implements OnInit {
   analyse() {
     if (this.createNewTaskForm.valid) {
       this.displayAnalysis = true;
-      const newTaskName = this.createNewTaskForm.value.newTaskName;
       const pv = this.createNewTaskForm.value.pv;
       const range = JSON.parse(localStorage.getItem("range"));
-      const hu = range.higherUpper;
       const hl = range.higherLower;
       const mu = range.medUpper;
       const ml = range.medLower;
@@ -201,7 +189,7 @@ export class CurrentSprintComponent implements OnInit {
         this.currWorkload = "High";
       } else if (currWorkloadWithNewTask <= mu && currWorkloadWithNewTask >= ml) {
         this.currWorkload = "Medium";
-      } else if (currWorkloadWithNewTask <= lu && currWorkloadWithNewTask >= ll) {
+      } else if (currWorkloadWithNewTask <= lu && currWorkloadWithNewTask >= 1) {
         this.currWorkload = "Low";
       }
 
@@ -215,7 +203,7 @@ export class CurrentSprintComponent implements OnInit {
           workload = "High";
         } else if (sprint.totalPV <= mu && sprint.totalPV >= ml) {
           workload = "Medium";
-        } else if (sprint.totalPV <= lu && sprint.totalPV >= ll) {
+        } else if (sprint.totalPV <= lu && sprint.totalPV >= 1) {
           workload = "Low";
         }
         if (workload === this.currWorkload) {
@@ -263,13 +251,11 @@ export class CurrentSprintComponent implements OnInit {
 
   onSubmitRange() {
     if (this.createNewTaskForm.valid) {
-      const highUpperRange = this.createRangeForm.value.highUpperRange;
       const highLowerRange = this.createRangeForm.value.highLowerRange;
       const medUpperRange = this.createRangeForm.value.medUpperRange;
       const medLowerRange = this.createRangeForm.value.medLowerRange;
       const lowUpperRange = this.createRangeForm.value.lowUpperRange;
-      const lowLowerRange = this.createRangeForm.value.lowLowerRange;
-      this.createJSONRangeObject(highUpperRange, highLowerRange, medUpperRange, medLowerRange, lowUpperRange, lowLowerRange)
+      this.createJSONRangeObject(highLowerRange, medUpperRange, medLowerRange, lowUpperRange)
     }
   }
 
@@ -318,14 +304,12 @@ export class CurrentSprintComponent implements OnInit {
     }
   }
 
-  createJSONRangeObject(hu: number, hl: number, mu: number, ml: number, lu: number, ll: number) {
+  createJSONRangeObject(hl: number, mu: number, ml: number, lu: number) {
     var range = {
-      "higherUpper": hu,
       "higherLower": hl,
       "medUpper": mu,
       "medLower": ml,
       "lowerUpper": lu,
-      "lowerLower": ll
     }
     console.log(range);
     this.closeSetRange();

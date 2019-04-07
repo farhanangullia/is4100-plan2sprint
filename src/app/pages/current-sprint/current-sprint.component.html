@@ -1,7 +1,16 @@
-<div style="margin:0 auto;max-width: 700px;height:100px;">
+<div style="margin:0 auto;max-width: 700px;height:180px;">
   <div style="text-align: center;padding-top: 5px;">
-    <h2>Current Sprint</h2>
+    <h2>Current Sprint {{currentSprint.sprintNum}}</h2>
     <h4>Project: {{project.default.title}}</h4>
+    <div>
+      High: From {{createRangeForm.value.highLowerRange}}
+    </div>
+    <div>
+      Medium: {{createRangeForm.value.medLowerRange}} to {{createRangeForm.value.medUpperRange}}
+    </div>
+    <div>
+      Low: 1 to {{createRangeForm.value.lowUpperRange}}
+    </div>
   </div>
 </div>
 
@@ -16,10 +25,10 @@
           </div>
         </div>
         <div>
-          <button mat-button (click)="openSetRange($event)">Set Range</button>
+          <button mat-button color="primary" (click)="openSetRange($event)">Set Workload Range</button>
         </div>
         <div>
-            <button mat-button (click)="onSubmitSprint()" type="button">Submit</button>
+          <button mat-button (click)="onSubmitSprint()" type="button">Submit Sprint</button>
         </div>
       </div>
     </div>
@@ -119,12 +128,9 @@
     <form [formGroup]="createRangeForm" (ngSubmit)="onSubmitRange()">
       <div>
         <mat-label>High: </mat-label>
+        larger than
         <mat-form-field>
           <input type="number" matInput formControlName="highLowerRange">
-        </mat-form-field>
-        to
-        <mat-form-field>
-          <input type="number" matInput formControlName="highUpperRange">
         </mat-form-field>
       </div>
 
@@ -141,10 +147,7 @@
 
       <div>
         <mat-label>Low: </mat-label>
-        <mat-form-field>
-          <input type="number" matInput formControlName="lowLowerRange">
-        </mat-form-field>
-        to
+        1 to
         <mat-form-field>
           <input type="number" matInput formControlName="lowUpperRange">
         </mat-form-field>
