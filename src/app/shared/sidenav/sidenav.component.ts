@@ -91,16 +91,40 @@ export class SidenavComponent implements OnInit {
   redirectToUserstories(event: any) {
     this.currentProjectId = localStorage.getItem('currentProjectId');
     this.router.navigateByUrl('/' + this.currentProjectId + "/userstories");
+    if (this.element !== undefined) {
+      this.element.style.backgroundColor = "white";
+      this.element.style.color = "#3F51B5";
+    }
+    var target = event.currentTarget;
+    target.style.backgroundColor = "#3F51B5";
+    target.style.color = "white";
+    this.element = target;
   }
 
   redirectToPastSprints(event: any) {
     this.currentProjectId = localStorage.getItem('currentProjectId');
     this.router.navigateByUrl('/' + this.currentProjectId + "/pastsprints");
+    if (this.element !== undefined) {
+      this.element.style.backgroundColor = "white";
+      this.element.style.color = "#3F51B5";
+    }
+    var target = event.currentTarget;
+    target.style.backgroundColor = "#3F51B5";
+    target.style.color = "white";
+    this.element = target;
   }
 
   redirectToCurrentSprint(event: any) {
     this.currentProjectId = localStorage.getItem('currentProjectId');
     this.router.navigateByUrl('/' + this.currentProjectId + "/currentsprint");
+    if (this.element !== undefined) {
+      this.element.style.backgroundColor = "white";
+      this.element.style.color = "#3F51B5";
+    }
+    var target = event.currentTarget;
+    target.style.backgroundColor = "#3F51B5";
+    target.style.color = "white";
+    this.element = target;
   }
 
 }

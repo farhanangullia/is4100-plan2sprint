@@ -55,6 +55,7 @@ export class CurrentSprintComponent implements OnInit {
         const latestSprint = this.project.default.sprints.length;
         this.currentSprint = this.project.default.sprints[latestSprint - 1];
         this.currentUserStories = this.currentSprint.userStories;
+        console.log('cur sprint', this.currentSprint);
       }
     )
   }
@@ -249,8 +250,8 @@ export class CurrentSprintComponent implements OnInit {
             overbudget += 1;
           }
         }
-          behind.push(behindSchedule);
-          over.push(overbudget);
+        behind.push(behindSchedule);
+        over.push(overbudget);
       }
       console.log(behind.length);
       console.log(over.length)
@@ -268,7 +269,7 @@ export class CurrentSprintComponent implements OnInit {
       this.warningMessage = "<p>Based on past Sprints with similar workload:</p> <br> "
       for (var i = 0; i < sprintNum.length; i++) {
         if (behind[i] > 0 || over[i] > 0)
-        this.warningMessage += "<p>Sprint <b>" + sprintNum[i] + "</b> has <b>" + behind[i] + "</b> user story behind schedule and <b>" + over[i] + "</b> user story over budget. </p>";
+          this.warningMessage += "<p>Sprint <b>" + sprintNum[i] + "</b> has <b>" + behind[i] + "</b> user story behind schedule and <b>" + over[i] + "</b> user story over budget. </p>";
       }
       this.warningMessage += "<br> <p>Are you sure you want to continue?</p>";
     }
