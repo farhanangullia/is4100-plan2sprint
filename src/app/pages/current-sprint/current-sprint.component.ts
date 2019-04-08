@@ -129,18 +129,33 @@ export class CurrentSprintComponent implements OnInit {
     this.pv = new FormControl('', {
       updateOn: 'change'
     })
-    this.highLowerRange = new FormControl(0, {
-      updateOn: 'change'
-    })
-    this.medLowerRange = new FormControl(0, {
-      updateOn: 'change'
-    })
-    this.medUpperRange = new FormControl(0, {
-      updateOn: 'change'
-    })
-    this.lowUpperRange = new FormControl(0, {
-      updateOn: 'change'
-    })
+    if (localStorage.getItem('range') === null) {
+      this.highLowerRange = new FormControl(0, {
+        updateOn: 'change'
+      })
+      this.medLowerRange = new FormControl(0, {
+        updateOn: 'change'
+      })
+      this.medUpperRange = new FormControl(0, {
+        updateOn: 'change'
+      })
+      this.lowUpperRange = new FormControl(0, {
+        updateOn: 'change'
+      })
+    } else {
+      this.highLowerRange = new FormControl(JSON.parse(localStorage.getItem("range")).higherLower, {
+        updateOn: 'change'
+      })
+      this.medLowerRange = new FormControl(JSON.parse(localStorage.getItem("range")).medLower, {
+        updateOn: 'change'
+      })
+      this.medUpperRange = new FormControl(JSON.parse(localStorage.getItem("range")).medUpper, {
+        updateOn: 'change'
+      })
+      this.lowUpperRange = new FormControl(JSON.parse(localStorage.getItem("range")).lowerUpper, {
+        updateOn: 'change'
+      })
+    }
     this.createEditValueControl();
   }
 
@@ -174,7 +189,6 @@ export class CurrentSprintComponent implements OnInit {
       const mu = range.medUpper;
       const ml = range.medLower;
       const lu = range.lowerUpper;
-      const ll = range.lowerLower;
       var currWorkloadWithNewTask = 0;
 
       //find current sprint workload with new task
@@ -226,6 +240,8 @@ export class CurrentSprintComponent implements OnInit {
         sprintNum.push(sameWorkload[i].sprintNum)
         for (var j = 0; j < sameWorkload[i].userStories.length; j++) {
           const userStory = sameWorkload[i].userStories[j];
+          console.log(userStory.totalEV / userStory.totalPV);
+          console.log(userStory.totalEV / userStory.totalAC)
           if (userStory.totalEV / userStory.totalPV < 1) {
             behindSchedule += 1;
           }
@@ -233,11 +249,25 @@ export class CurrentSprintComponent implements OnInit {
             overbudget += 1;
           }
         }
-        behind.push(behindSchedule);
-        over.push(overbudget);
+          behind.push(behindSchedule);
+          over.push(overbudget);
       }
-      this.warningMessage = "<p>Based on past Sprints:</p> <br> "
+      console.log(behind.length);
+      console.log(over.length)
+      var overOrBehind = false;
       for (var i = 0; i < sprintNum.length; i++) {
+        if ((behind[i] > 0) || (over[i] > 0)) {
+          overOrBehind = true;
+        }
+      }
+      console.log(overOrBehind)
+      if (overOrBehind === false) {
+        this.warningMessage = "Past Sprints with similar workload suggest that you were able able to complete the intended workload. Click submit to continue."
+        return;
+      }
+      this.warningMessage = "<p>Based on past Sprints with similar workload:</p> <br> "
+      for (var i = 0; i < sprintNum.length; i++) {
+        if (behind[i] > 0 || over[i] > 0)
         this.warningMessage += "<p>Sprint <b>" + sprintNum[i] + "</b> has <b>" + behind[i] + "</b> user story behind schedule and <b>" + over[i] + "</b> user story over budget. </p>";
       }
       this.warningMessage += "<br> <p>Are you sure you want to continue?</p>";
