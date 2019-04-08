@@ -52,10 +52,13 @@ export class HomeComponent implements OnInit {
     }
 
     for (let i = 1; i <= localStorage.length; i++) {
+      console.log(i);
       console.log(localStorage.key(i))
       var project = JSON.parse(localStorage.getItem(i.toString()))
       console.log(project)
-      this.allProjs.push(project);
+      if(project !== null) {
+        this.allProjs.push(project);
+      }
     }
     console.log(this.allProjs);
   }
@@ -108,7 +111,7 @@ export class HomeComponent implements OnInit {
     console.log("description", description);
     var newProject = {
       default: {
-        "projectId": (localStorage.length + 1).toString(),
+        "projectId": (this.allProjs.length + 1).toString(),
         "title": title,
         "description": description,
         "availableUserStories": [],
