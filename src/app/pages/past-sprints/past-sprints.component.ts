@@ -40,6 +40,8 @@ export class PastSprintsComponent implements OnInit {
 
   projectId: any;
 
+  selectedSprint: any;
+
 
   constructor(private route: ActivatedRoute) { }
 
@@ -137,6 +139,8 @@ export class PastSprintsComponent implements OnInit {
     console.log(this.sprintNum);
     this.userStories = null;
     this.userStories = this.currentProject.default.sprints[this.sprintNum - 1].userStories;
+    this.selectedSprint = this.currentProject.default.sprints[this.sprintNum - 1];
+    console.log('sele', this.selectedSprint);
 
 
   }

@@ -1,7 +1,11 @@
-<div style="margin:0 auto;max-width: 700px;height:100px;">
+<div style="margin:0 auto;max-width: 700px;height:140px;">
   <div style="text-align: center;padding-top: 5px;">
     <h2>Past Sprints</h2>
     <h4>{{currentProject.default.title}}</h4>
+
+    <div *ngIf="selectedSprint !== undefined">
+      <h4>Sprint: {{selectedSprint.sprintNum}} Total PV: {{selectedSprint.totalPV}}</h4>
+    </div>
   </div>
 </div>
 
@@ -47,8 +51,17 @@
 
           <div class="ui-g-2 ui-sm-6">Number of Tasks: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{userStory.tasks.length}}</b></div>
+          <div class="ui-g-2 ui-sm-6">Total PV: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{userStory.totalPV}}</b></div>
+          <div class="ui-g-2 ui-sm-6">Total EV: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{userStory.totalEV}}</b></div>
+          <div class="ui-g-2 ui-sm-6">Total AC: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{userStory.totalAC}}</b></div>
 
-
+          <div class="ui-g-2 ui-sm-6">SPI: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{userStory.totalEV/userStory.totalPV}}</b></div>
+          <div class="ui-g-2 ui-sm-6">CPI: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{userStory.totalEV/userStory.totalAC}}</b></div>
         </div>
       </div>
       <div class="ui-g-12 ui-md-1 view-icon">
