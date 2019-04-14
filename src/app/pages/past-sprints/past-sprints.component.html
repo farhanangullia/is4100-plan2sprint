@@ -9,14 +9,15 @@
   </div>
 </div>
 
-<p-dataView #dv [value]="userStories" [paginator]="true" [rows]="10" emptyMessage="Please select a past sprint from the drop down list on the top right"
-  layout="list" paginatorPosition="both" filterBy="details" [sortField]="sortField" [sortOrder]="sortOrder">
+<p-dataView #dv [value]="userStories" [paginator]="true" [rows]="10"
+  emptyMessage="Please select a past sprint from the drop down list on the top right" layout="list"
+  paginatorPosition="both" filterBy="details" [sortField]="sortField" [sortOrder]="sortOrder">
   <p-header>
     <div class="ui-helper-clearfix">
       <div class="ui-g">
         <div class="ui-g-12 ui-md-4">
-          <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)"
-            [style]="{'min-width':'15em'}"></p-dropdown>
+          <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By"
+            (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
         </div>
         <div class="ui-g-6 ui-md-4 filter-container">
           <div style="position:relative">
@@ -27,7 +28,8 @@
           <!-- <p-toggleButton [(ngModel)]="unresolvedTickets" (onChange)="handleChange($event)" onLabel="Unresolved Tickets"
             offLabel="Resolved Tickets" [style]="{'width':'150px'}"></p-toggleButton> -->
           Sprint
-          <select id="sprintNum" #Id="ngModel" [(ngModel)]="sprintNum" name="sprintNum" (change)="onSprintChange($event);">
+          <select id="sprintNum" #Id="ngModel" [(ngModel)]="sprintNum" name="sprintNum"
+            (change)="onSprintChange($event);">
 
             <option [ngValue]="k.sprintNum" *ngFor="let k of sprints">
               {{k.sprintNum}}
@@ -51,7 +53,6 @@
 
           <div class="ui-g-2 ui-sm-6">Number of Tasks: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{userStory.tasks.length}}</b></div>
-<<<<<<< Updated upstream
           <div class="ui-g-2 ui-sm-6">Total PV: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{userStory.totalPV}}</b></div>
           <div class="ui-g-2 ui-sm-6">Total EV: </div>
@@ -63,9 +64,6 @@
           <div class="ui-g-10 ui-sm-6"><b>{{userStory.totalEV/userStory.totalPV}}</b></div>
           <div class="ui-g-2 ui-sm-6">CPI: </div>
           <div class="ui-g-10 ui-sm-6"><b>{{userStory.totalEV/userStory.totalAC}}</b></div>
-=======
-
->>>>>>> Stashed changes
         </div>
       </div>
       <div class="ui-g-12 ui-md-1 view-icon">
