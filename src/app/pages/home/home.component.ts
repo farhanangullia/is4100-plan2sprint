@@ -132,7 +132,7 @@ export class HomeComponent implements OnInit {
     }
     swal.fire({
       type: 'success',
-      title: "project added",
+      title: "Project Added",
 
     }).then(() => {
 

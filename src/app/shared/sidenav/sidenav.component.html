@@ -12,22 +12,22 @@
       <mat-nav-list class="dashboard">
 
         <a mat-list-item (click)="toggleActive($event,'/home')">
-          <mat-icon matTooltip="Projects" matTooltipPosition="after" mat-list-icon>assignment</mat-icon>
+          <mat-icon matTooltip="Projects" matTooltipPosition="after" mat-list-icon>category</mat-icon>
           <p matLine *ngIf="isExpanded">Projects</p>
         </a>
 
         <a mat-list-item *ngIf="!(location.includes('/home'))" (click)="redirectToUserstories($event)">
-          <mat-icon matTooltip="Project User Stories" matTooltipPosition="after" mat-list-icon>assignment_late</mat-icon>
+          <mat-icon matTooltip="Project User Stories" matTooltipPosition="after" mat-list-icon>speaker_notes</mat-icon>
           <p matLine *ngIf="isExpanded">Project User Stories</p>
         </a>
 
         <a mat-list-item *ngIf="!(location.includes('/home'))" (click)="redirectToCurrentSprint($event)">
-          <mat-icon matTooltip="Current Sprint" matTooltipPosition="after" mat-list-icon>assignment</mat-icon>
+          <mat-icon matTooltip="Current Sprint" matTooltipPosition="after" mat-list-icon>show_chart</mat-icon>
           <p matLine *ngIf="isExpanded">Current Sprint</p>
         </a>
 
         <a mat-list-item *ngIf="!(location.includes('/home'))" (click)="redirectToPastSprints($event)">
-          <mat-icon matTooltip="Past Sprints" matTooltipPosition="after" mat-list-icon>note_add</mat-icon>
+          <mat-icon matTooltip="Past Sprints" matTooltipPosition="after" mat-list-icon>restore</mat-icon>
           <p matLine *ngIf="isExpanded">Past Sprints</p>
         </a>
 
