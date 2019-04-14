@@ -15,6 +15,7 @@ You may test the web application through the URLs mentioned above. This way, you
 ## Installing the pre-requisites
 Ensure you have node.js installed, go to command line and enter: `node -v` 
 If your console does not recognize the command, get nodejs installed first.
+
 Once nodejs is installed, you need to install the ANGULAR-CLI. Go to the command line and enter `npm install -g @angular/cli`
 
 Once you have the pre-requisites installed, go to the next step below.
