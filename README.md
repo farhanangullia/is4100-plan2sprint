@@ -7,6 +7,7 @@ We would HIGHLY recommend you to test our application through the links mentione
 
 ## Links to Plan2Sprint (Live on Production Server)
 Plan2Sprint URL: http://plan2sprint.ga:4200/home
+
 Alternate URL (Elastic IP): http://3.18.227.133:4200/
 
 You may test the web application through the URLs mentioned above. This way, you may skip installing and deploying the application which are in the steps mentioned below.
