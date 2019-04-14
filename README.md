@@ -6,6 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 We would HIGHLY recommend you to test our application through the links mentioned below. Installing and deploying the angular application locally can be cumbersome and unnecessary as our application is already deployed on our production server. During testings, if you encounter issues, we would recommend you to clear your browser storage (cookies) as our application heavily relies on it. Otherwise, we would also recommend you to switch into another browser or access it through Chrome in incognito mode. If Plan2Sprint's performance is slow, it is due to the domain routing and proxy that we configured, so I would recommend you to access it via the Elastic IP (Alternate URL) if it gets too slow.
 
 Recommended browser: Google Chrome
+
 Note: Our web application is fully responsive and mobile friendly. 
 
 ## Links to Plan2Sprint (Live on Production Server)
