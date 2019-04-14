@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { networkInterfaces } from 'os';
 import swal from 'sweetalert2';
+import { all } from 'q';
 
 @Component({
   selector: 'app-current-sprint',
@@ -209,69 +210,137 @@ export class CurrentSprintComponent implements OnInit {
         this.currWorkload = "Low";
       }
 
+      //get all project sprints
+      const allProj = [];
+      for (let i = 1; i <= localStorage.length; i++) {
+        var project = JSON.parse(localStorage.getItem(i.toString()))
+        if (project !== null) {
+          allProj.push(project);
+        }
+      }
+
       //filter out past sprints that have same workload
-      const pastSprints = this.project.default.sprints;
-      const sameWorkload = [];
-      for (var i = 0; i < pastSprints.length - 1; i++) {
-        const sprint = pastSprints[i];
-        var workload;
-        if (sprint.totalPV >= hl) {
-          workload = "High";
-        } else if (sprint.totalPV <= mu && sprint.totalPV >= ml) {
-          workload = "Medium";
-        } else if (sprint.totalPV <= lu && sprint.totalPV >= 1) {
-          workload = "Low";
-        }
-        if (workload === this.currWorkload) {
-          sameWorkload.push(sprint);
+      // const pastSprints = this.project.default.sprints;
+      // const sameWorkload = [];
+      const sameWorkloadProj = [];
+
+      outer:
+      for (var i = 0; i < allProj.length; i++) {
+        var currProj = allProj[i]
+        var allSprints = allProj[i].default.sprints;
+        inner:
+        for (var j = 0; j < allProj[i].default.sprints.length - 1; j++) {
+          var workload;
+          var sprint = allSprints[j];
+          if (sprint.totalPV >= hl) {
+            workload = "High";
+          } else if (sprint.totalPV <= mu && sprint.totalPV >= ml) {
+            workload = "Medium";
+          } else if (sprint.totalPV <= lu && sprint.totalPV >= 1) {
+            workload = "Low";
+          }
+          console.log(workload)
+          // once encounter sprint of similar workload, will push proj into sameworkloadproj and exit inner loop
+          // and go to the next proj to find. this is to prevent double count 
+          if (workload === this.currWorkload) {
+            sameWorkloadProj.push(currProj);
+            break inner;
+          }
         }
       }
+
+      // for (var i = 0; i < pastSprints.length - 1; i++) {
+      //   const sprint = pastSprints[i];
+      //   var workload;
+      //   if (sprint.totalPV >= hl) {
+      //     workload = "High";
+      //   } else if (sprint.totalPV <= mu && sprint.totalPV >= ml) {
+      //     workload = "Medium";
+      //   } else if (sprint.totalPV <= lu && sprint.totalPV >= 1) {
+      //     workload = "Low";
+      //   }
+      //   if (workload === this.currWorkload) {
+      //     sameWorkload.push(sprint);
+      //   }
+      // }
+
+
       //calculate number of overbudget and/or behind schedule userstories
-      const numberOfSprints = sameWorkload.length;
-      if (numberOfSprints === 0) {
-        this.warningMessage = "You have no Sprints that are of similar workload. Please click submit to continue.";
+      const numberOfProjs = sameWorkloadProj.length;
+      if (numberOfProjs === 0) {
+        this.warningMessage = "<p>You have no Sprints in any other projects that are of similar workload.</p> <br> Please click submit to continue.";
         return;
       }
-      var sprintNum = [];
-      var behind = [];
-      var over = [];
-      for (var i = 0; i < sameWorkload.length; i++) {
-        var overbudget = 0;
-        var behindSchedule = 0;
-        sprintNum.push(sameWorkload[i].sprintNum)
-        for (var j = 0; j < sameWorkload[i].userStories.length; j++) {
-          const userStory = sameWorkload[i].userStories[j];
-          console.log(userStory.totalEV / userStory.totalPV);
-          console.log(userStory.totalEV / userStory.totalAC)
-          if (userStory.totalEV / userStory.totalPV < 1) {
-            behindSchedule += 1;
+
+      // var sprintNum = [];
+      // var behind = [];
+      // var over = [];
+
+      var analysis = [];
+
+      for (var i = 0; i < sameWorkloadProj.length; i++) {
+        var project = sameWorkloadProj[i];
+        var sprints = project.default.sprints;
+        for (var j = 0; j < sprints.length - 1; j++) {
+          var sprint = sprints[j];
+          var overbudget = 0;
+          var behindSchedule = 0;
+          for (var k = 0; k < sprint.userStories.length; k++) {
+            var userStory = sprint.userStories[k];
+            if (userStory.totalEV / userStory.totalPV < 1) {
+              behindSchedule += 1;
+            }
+            if (userStory.totalEV / userStory.totalAC < 1) {
+              overbudget += 1;
+            }
           }
-          if (userStory.totalEV / userStory.totalAC < 1) {
-            overbudget += 1;
+          if (behindSchedule !== 0 || overbudget !== 0) {
+            var projAnalysis = {
+              projName: project.default.title,
+              sprintNum: sprint.sprintNum,
+              overbudget: overbudget,
+              behindSchedule: behindSchedule
+            }
+            analysis.push(projAnalysis)
           }
         }
-        behind.push(behindSchedule);
-        over.push(overbudget);
       }
-      console.log(behind.length);
-      console.log(over.length)
-      var overOrBehind = false;
-      for (var i = 0; i < sprintNum.length; i++) {
-        if ((behind[i] > 0) || (over[i] > 0)) {
-          overOrBehind = true;
-        }
-      }
-      console.log(overOrBehind)
-      if (overOrBehind === false) {
-        this.warningMessage = "Past Sprints with similar workload suggest that you were able able to complete the intended workload. Click submit to continue."
+      console.log(analysis)
+
+      // for (var i = 0; i < sameWorkload.length; i++) {
+      //   var overbudget = 0;
+      //   var behindSchedule = 0;
+      //   sprintNum.push(sameWorkload[i].sprintNum)
+      //   for (var j = 0; j < sameWorkload[i].userStories.length; j++) {
+      //     const userStory = sameWorkload[i].userStories[j];
+      //     if (userStory.totalEV / userStory.totalPV < 1) {
+      //       behindSchedule += 1;
+      //     }
+      //     if (userStory.totalEV / userStory.totalAC < 1) {
+      //       overbudget += 1;
+      //     }
+      //   }
+      //   behind.push(behindSchedule);
+      //   over.push(overbudget);
+      // }
+
+      // var overOrBehind = false;
+      // for (var i = 0; i < sprintNum.length; i++) {
+      //   if ((behind[i] > 0) || (over[i] > 0)) {
+      //     overOrBehind = true;
+      //   }
+      // }
+
+      if (numberOfProjs !== 0 && analysis.length === 0) {
+        this.warningMessage = "<p>Past Sprints from all projects with similar workload suggest that you were able able to complete the intended workload.</p> <br> Click submit to continue."
         return;
       }
-      this.warningMessage = "<p>Based on past Sprints with similar workload:</p> <br> "
-      for (var i = 0; i < sprintNum.length; i++) {
-        if (behind[i] > 0 || over[i] > 0)
-          this.warningMessage += "<p>Sprint <b>" + sprintNum[i] + "</b> has <b>" + behind[i] + "</b> user story behind schedule and <b>" + over[i] + "</b> user story over budget. </p>";
+
+      this.warningMessage = "<p>Based on past Sprints from other projects with similar workload with the current Sprint:</p> <br> "
+      for (var i = 0; i < analysis.length; i++) {
+        this.warningMessage += "<p>Project: <b>" + analysis[i].projName + "</b> Sprint <b>" + analysis[i].sprintNum + "</b> has <b>" + analysis[i].behindSchedule + "</b> user story behind schedule and <b>" + analysis[i].overbudget + "</b> user story over budget. </p> <br>";
       }
-      this.warningMessage += "<br> <p>Are you sure you want to continue?</p>";
+      this.warningMessage += "<br> <p>Are you sure you want to add this task with the man-hours entered?</p>";
     }
   }
 
