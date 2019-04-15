@@ -332,11 +332,11 @@ export class CurrentSprintComponent implements OnInit {
       // }
 
       if (numberOfProjs !== 0 && analysis.length === 0) {
-        this.warningMessage = "<p>Past Sprints from all projects with similar workload suggest that you were able able to complete the intended workload.</p> <br> Click submit to continue."
+        this.warningMessage = "<p>Past Sprints from all projects with similar workload suggest that you were able able to complete the intended workload of this Sprint.</p> <br> Click submit to continue."
         return;
       }
 
-      this.warningMessage = "<p>Based on past Sprints from other projects with similar workload with the current Sprint:</p> <br> "
+      this.warningMessage = "<p>Based on past Sprints from other projects with similar workload as the current Sprint:</p> <br> "
       for (var i = 0; i < analysis.length; i++) {
         this.warningMessage += "<p>Project: <b>" + analysis[i].projName + "</b> Sprint <b>" + analysis[i].sprintNum + "</b> has <b>" + analysis[i].behindSchedule + "</b> user story behind schedule and <b>" + analysis[i].overbudget + "</b> user story over budget. </p> <br>";
       }

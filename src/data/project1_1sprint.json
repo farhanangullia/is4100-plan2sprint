@@ -93,7 +93,7 @@
         },
         {
             "sprintNum": 2,
-            "totalPV": 30,
+            "totalPV": 120,
             "userStories": [
                 {
                     "priority": 1,
